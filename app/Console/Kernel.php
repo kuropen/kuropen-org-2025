@@ -12,6 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        // WARNING: no less than 5 minute interval, due to the limitation of Railway
+
         // $schedule->command('inspire')->hourly();
     }
 

@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Log;
 class SendInquiryRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Get the authorization header for the request and split it into timestamp and token.
+     * @return array|null
      */
     public function extractToken(): ?array
     {
@@ -25,6 +26,9 @@ class SendInquiryRequest extends FormRequest
         return explode(':', $authorization);
     }
 
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
         // BASIC認証のAuthorizationヘッダから情報を取り出す
