@@ -23,7 +23,6 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->index('type_id');
-            $table->foreign('type_id')->references('id')->on('inquiry_types');
         });
     }
 
