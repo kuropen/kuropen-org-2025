@@ -26,6 +26,10 @@ jobs:
             php-version: '8.1'
             extensions: mbstring, pgsql, readline, xml
             tools: composer
+        - name: Setting target service
+          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -s web
+          env:
+            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         - name: Fetch environment variables on Railway
           run: railway variables --json | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
           env:
