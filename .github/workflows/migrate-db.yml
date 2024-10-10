@@ -34,9 +34,14 @@ jobs:
           run: railway variables --json | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
           env:
             RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        - name: Checking Public Database URL on Railway
+          id: db_check
+          run: railway variables -s Postgres --json | jq -r 'to_entries | .[] | select(.key == "DATABASE_PUBLIC_URL") | ["DATABASE_URL", (.value | @sh)] | join("=")' >> "$GITHUB_OUTPUT"
+          env:
+            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         - name: Installing PHP dependencies
           run: composer install
         - name: Run migration
           run: php artisan migrate --force
           env:
-            DATABASE_URL: ${{ secrets.RAILWAY_DB_URL }}
+            DATABASE_URL: ${{ steps.db_check.outputs.DATABASE_URL }}
