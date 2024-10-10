@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Headers;
 use Illuminate\Queue\SerializesModels;
 
-class Inquiry extends Mailable
+class InquiryMail extends Mailable
 {
     use Queueable, SerializesModels;
 

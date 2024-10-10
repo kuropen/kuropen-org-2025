@@ -20,6 +20,8 @@ class RedirectedArchiveFactory extends Factory
             'title' => fake()->title(),
             'old_path' => '/pgn-archives/' . fake()->slug(),
             'new_url' => fake()->url(),
+            'created_at' => fake()->dateTime(),
+            'updated_at' => fake()->dateTime(),
         ];
     }
 }

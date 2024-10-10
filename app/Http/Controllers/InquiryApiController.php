@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SendInquiryRequest;
-use App\Mail\Inquiry;
+use App\Mail\InquiryMail;
+use App\Models\InquiryType;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 
@@ -27,6 +28,14 @@ class InquiryApiController extends Controller
         ])->header('Cache-Control', 'private, max-age=60, stale-while-revalidate=3600, stale-if-error=3600, must-revalidate');
     }
 
+    public function getTypes()
+    {
+        $types = InquiryType::select('id', 'name', 'description', 'valid')->orderBy('id')->get();
+        return response()->json([
+            'types' => $types
+        ])->header('Cache-Control', 'public, max-age=3600, must-revalidate');
+    }
+
     public function send(SendInquiryRequest $request)
     {
         // リクエストパラメータを取り出す
@@ -36,7 +45,7 @@ class InquiryApiController extends Controller
         $message = $request->input('message');
 
         // お問い合わせメールを送信
-        Mail::send(new Inquiry($name, $email, $type, $message));
+        Mail::send(new InquiryMail($name, $email, $type, $message));
 
         // トークンを削除
         list($timestamp) = $request->extractToken();

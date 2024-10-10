@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\InquiryType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 class SendInquiryRequest extends FormRequest
 {
@@ -53,7 +55,19 @@ class SendInquiryRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'type' => 'required',
+            'type' => [
+                'required_without:type_id',
+                'prohibits:type_id',
+                'string',
+                Rule::in(InquiryType::getAvailableNames()),
+            ],
+            'type_id' => [
+                'prohibited', //FIXME: 暫定措置（まだtype_idを利用する処理を書いていない）
+                'prohibits:type',
+                'required_without:type',
+                'integer',
+                Rule::in(InquiryType::getAvailableIds()),
+            ],
             'message' => 'required',
         ];
     }

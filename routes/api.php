@@ -19,5 +19,6 @@ use Illuminate\Support\Facades\Route;
 //});
 Route::prefix('inquiry')->controller(\App\Http\Controllers\InquiryApiController::class)->group(function () {
     Route::get('token', 'getToken');
+    Route::get('types', 'getTypes');
     Route::post('send', 'send');
 });

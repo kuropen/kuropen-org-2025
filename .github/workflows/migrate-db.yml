@@ -1,0 +1,43 @@
+name: "Database Migration"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/migrate-db.yml
+      - database/migrations/*
+
+jobs:
+  prepare:
+    name: "Prepare Environment"
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: Use Node.js 20
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+        - name: Install Railway CLI
+          run: npm install -g @railway/cli
+        - name: Setup PHP extension
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '8.1'
+            extensions: mbstring, pgsql, readline, xml
+            tools: composer
+        - name: Fetch environment variables on Railway
+          run: railway variables --json | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
+          env:
+            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        - name: Installing PHP dependencies
+          run: composer install
+  migrate:
+    name: "Run migration"
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Run migration
+        run: php artisan migrate
+        env:
+          DATABASE_URL: ${{ secrets.RAILWAY_DB_URL }}

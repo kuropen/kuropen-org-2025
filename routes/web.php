@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // Temporary redirected
-    return redirect(config('app.url'), 307);
+    return view('home');
 });
 Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
 Route::prefix('/pgn-archives')

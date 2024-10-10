@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RedirectedArchiveSeeder extends Seeder
+class InquiryTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,8 @@ class RedirectedArchiveSeeder extends Seeder
     {
         $insertData = array_map(
             fn ($item) => array_merge($item, ['created_at' => now(), 'updated_at' => now()]),
-            config('inherited_data.redirect_table')
+            config('inherited_data.inquiry_reason')
         );
-        DB::table('redirected_archives')->insert($insertData);
+        DB::table('inquiry_types')->insert($insertData);
     }
 }
