@@ -10,7 +10,7 @@ class NostrController extends Controller
     {
         $hex = config('const.nip05.hex');
         if (blank($hex)) {
-            abort(503);
+            abort(503, 'Nostr account information is not yet configured. Please contact to the administrator.');
         }
 
         $namesHexList = [];
