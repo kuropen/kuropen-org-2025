@@ -33,6 +33,11 @@ class SendInquiryRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // JSON APIでなければ以下の処理は行わない
+        if (!$this->expectsJson()) {
+            return true;
+        }
+
         // BASIC認証のAuthorizationヘッダから情報を取り出す
         list($timestamp, $token) = $this->extractToken();
 

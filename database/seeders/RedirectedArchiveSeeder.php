@@ -14,7 +14,12 @@ class RedirectedArchiveSeeder extends Seeder
     public function run(): void
     {
         $insertData = array_map(
-            fn ($item) => array_merge($item, ['created_at' => now(), 'updated_at' => now()]),
+            function ($item) {
+                // $itemからpublished_atを削除
+                unset($item['published_at']);
+                // $itemにcreated_atとupdated_atを追加
+                return array_merge($item, ['created_at' => now(), 'updated_at' => now()]);
+            },
             config('inherited_data.redirect_table')
         );
         DB::table('redirected_archives')->insert($insertData);
