@@ -17,3 +17,10 @@ Route::get('/', function () {
     // Temporary redirected
     return redirect(config('app.url'), 307);
 });
+Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
+Route::prefix('/pgn-archives')
+    ->controller(\App\Http\Controllers\RedirectedArchiveController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{slug}', 'withSlug');
+    });
