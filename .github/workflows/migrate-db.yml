@@ -33,6 +33,6 @@ jobs:
         - name: Installing PHP dependencies
           run: composer install
         - name: Run migration
-          run: php artisan migrate
+          run: php artisan migrate --force
           env:
             DATABASE_URL: ${{ secrets.RAILWAY_DB_URL }}
