@@ -7,6 +7,9 @@ namespace App\Services\DocumentSources;
  */
 class DocumentSources
 {
+    /**
+     * @var class-string<DocumentSource>[]
+     */
     private static array $availableSources = [
         ClassicArchiveSource::class,
         SizuMeSource::class,
