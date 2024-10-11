@@ -2,6 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Services\DocumentSources\DocumentSource;
+use App\Services\DocumentSources\DocumentSources;
+use App\Services\DocumentSources\DocumentSourceWithFollowingTask;
 use Illuminate\Console\Command;
 
 class LoadDocumentCommand extends Command
@@ -25,6 +28,15 @@ class LoadDocumentCommand extends Command
      */
     public function handle()
     {
-        //
+        $this->info("Document Loading Start.");
+        $this->withProgressBar(DocumentSources::getAvailableSources(), function(DocumentSource $source) {
+            $documents = $source->getDocuments();
+            \App\Models\Document::storeDocuments($documents);
+            if ($source instanceof DocumentSourceWithFollowingTask) {
+                $source->done();
+            }
+        });
+        $this->newLine();
+        $this->info("Document Loading Finish.");
     }
 }

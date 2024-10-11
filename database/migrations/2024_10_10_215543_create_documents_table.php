@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('url');
-            $table->date('published_at');
+            $table->dateTime('published_at');
             $table->softDeletes();
             $table->timestamps();
         });

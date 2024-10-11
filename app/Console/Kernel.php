@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
         // WARNING: no less than 5 minute interval, due to the limitation of Railway
 
         // $schedule->command('inspire')->hourly();
+        $schedule->command('document:load')->hourly();
     }
 
     /**

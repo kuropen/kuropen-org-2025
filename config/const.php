@@ -13,4 +13,8 @@ return [
             'wss://nostr-relay.nokotaro.com/'
         ],
     ],
+    'sizu_me' => [
+        'api_url_prefix' => 'https://sizu.me/api/v1',
+        'api_key' => env('SIZU_ME_API_KEY'),
+    ],
 ];
