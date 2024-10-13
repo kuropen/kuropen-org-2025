@@ -39,10 +39,10 @@ class StaffZoneController
         abort_unless($isAdmin || $isModerator, 403, '権限がありません。');
 
         // アクセストークンをCookieに保存する。Cookieの有効期限は1年間とする。
-        Cookie::forever(config('const.staff_zone.access_token_key'), $token);
+        $tokenCookie = Cookie::forever(config('const.staff_zone.access_token_key'), $token);
 
         // メニュー画面へリダイレクト
-        return redirect(action([self::class, 'menu']));
+        return redirect(action([self::class, 'menu']))->withCookie($tokenCookie);
     }
 
     public function menu(Request $request)
@@ -66,7 +66,7 @@ class StaffZoneController
 
     public function logout()
     {
-        Cookie::forget(config('const.staff_zone.access_token_key'));
-        return redirect('/');
+        $cookieRemove = Cookie::forget(config('const.staff_zone.access_token_key'));
+        return redirect('/')->withCookie($cookieRemove);
     }
 }
