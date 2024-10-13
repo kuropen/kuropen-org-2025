@@ -33,6 +33,11 @@ class MiAuth
         return $baseUrl . '?' . http_build_query($urlParameters);
     }
 
+    /**
+     * MiAuthの認証に成功した場合、アクセストークンを取得します。
+     * @param UuidInterface|string $sessionUuid
+     * @return string
+     */
     public function getAccessToken(UuidInterface|string $sessionUuid): string
     {
         if ($sessionUuid instanceof UuidInterface) {
