@@ -1,14 +1,8 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{config('app.name')}}</title>
-    @vite('resources/css/app.css')
-</head>
-<body>
-<h1 class="text-3xl font-bold underline">
-    Hello world!
-</h1>
-</body>
-</html>
+@extends('layouts.main')
+
+@section('content')
+    <section>
+        <p>こちらは現在準備中のシステムです。</p>
+        <p><a href="/staff-zone">管理画面ログイン</a></p>
+    </section>
+@endsection

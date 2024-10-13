@@ -17,4 +17,11 @@ return [
         'api_url_prefix' => 'https://sizu.me/api/v1',
         'api_key' => env('SIZU_ME_API_KEY'),
     ],
+    'misskey' => [
+        'host' => 'https://mi.kuropen.org',
+    ],
+    'staff_zone' => [
+        'access_token_key' => 'staff_access_token',
+        'current_user_info_key' => 'staff_current_user_info',
+    ],
 ];

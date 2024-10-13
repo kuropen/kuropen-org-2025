@@ -58,7 +58,7 @@ class SizuMeApi
         $paramsSent = array_merge($defaultParams, $params);
         $sizuMeResponse = Http::withUrlParameters($paramsSent)
             ->acceptJson()
-            ->withHeader('Authorization', 'Bearer ' . config('const.sizu_me.api_key'))
+            ->withToken(config('const.sizu_me.api_key'))
             ->get(config('const.sizu_me.api_url_prefix') . '/posts');
 
         if ($sizuMeResponse->failed()) {
