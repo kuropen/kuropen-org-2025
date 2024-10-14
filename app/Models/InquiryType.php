@@ -11,7 +11,7 @@ class InquiryType extends Model
 
     public static function getAvailableRecords()
     {
-        return InquiryType::where('valid', true)->get();
+        return self::where('valid', true)->get();
     }
 
     public static function getAvailableNames()
@@ -28,5 +28,10 @@ class InquiryType extends Model
         return $records->map(function ($record) {
             return $record->id;
         });
+    }
+
+    public static function getIdFromName(string $name): int
+    {
+        return self::where('name', $name)->first()->id;
     }
 }

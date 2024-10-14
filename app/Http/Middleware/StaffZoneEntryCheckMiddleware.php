@@ -19,14 +19,19 @@ class StaffZoneEntryCheckMiddleware
     {
         // アクセストークンがセッションに保存されているか確認
         if (!($token = $request->cookie(config('const.staff_zone.access_token_key')))) {
-            return redirect()->action([StaffZoneController::class, 'index']);
+            return redirect()->action(
+                [StaffZoneController::class, 'index'],
+                ['landing' => $request->fullUrl()],
+            );
         }
 
         $userApi = new MisskeyUserApi();
         $userInfo = $userApi->getUserInfo($token);
-        abort_unless($userInfo['isAdmin'] || $userInfo['isModerator'], 403, '権限がありません。');
+        if (!$userApi->hasPrivilege($userInfo)) {
+            return response()->view('staff.privilege_error', [], 403);
+        }
 
-        // $userInfo から name, isAdmin, isModerator の各要素を取り出し、セッション変数に格納する
+        // $userInfo をセッション変数に格納する
         $request->session()->put(config('const.staff_zone.current_user_info_key'), $userInfo);
 
         return $next($request);

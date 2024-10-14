@@ -67,7 +67,6 @@ class SendInquiryRequest extends FormRequest
                 Rule::in(InquiryType::getAvailableNames()),
             ],
             'type_id' => [
-                'prohibited', //FIXME: 暫定措置（まだtype_idを利用する処理を書いていない）
                 'prohibits:type',
                 'required_without:type',
                 'integer',

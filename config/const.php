@@ -23,5 +23,6 @@ return [
     'staff_zone' => [
         'access_token_key' => 'staff_access_token',
         'current_user_info_key' => 'staff_current_user_info',
+        'landing_url_key' => 'staff_landing_url',
     ],
 ];

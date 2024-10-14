@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StaffAuthCallbackRequest;
+use App\Http\Requests\StaffAuthRequest;
 use App\Services\ExternalApi\Misskey\MiAuth;
 use App\Services\ExternalApi\Misskey\MisskeyUserApi;
 use Illuminate\Http\Request;
@@ -11,12 +12,17 @@ use Ramsey\Uuid\Uuid;
 
 class StaffZoneController
 {
-    public function index(MiAuth $miAuth)
+    public function index(StaffAuthRequest $request, MiAuth $miAuth)
     {
-        // アクセストークンがあればメニュー画面へリダイレクト
+        $landingUrl = $request->input('landing') ?: action([self::class, 'menu']);
+
+        // アクセストークンがあればリダイレクト
         if (Cookie::has(config('const.staff_zone.access_token_key'))) {
-            return redirect(action([self::class, 'menu']));
+            return redirect($landingUrl);
         }
+
+        // Landing URLをセッションに保存
+        $request->session()->put(config('const.staff_zone.landing_url_key'), $landingUrl);
 
         // UUIDを生成してMiAuthの認証リクエストURLにリダイレクトする
         $sessionUuid = Uuid::uuid4();
@@ -32,17 +38,19 @@ class StaffZoneController
         // MiAuthからアクセストークンを取得する
         $token = $miAuth->getAccessToken($sessionUuid);
 
-        // アクセストークンを用いてユーザー情報を取得する
-        $userInfo = $userApi->getUserInfo($token);
-        $isAdmin = $userInfo['isAdmin'];
-        $isModerator = $userInfo['isModerator'];
-        abort_unless($isAdmin || $isModerator, 403, '権限がありません。');
+        // 権限判定
+        if (!$userApi->hasPrivilege($token)) {
+            return response()->view('staff.privilege_error', [], 403);
+        }
 
-        // アクセストークンをCookieに保存する。Cookieの有効期限は1年間とする。
+        // アクセストークンをCookieに保存する
         $tokenCookie = Cookie::forever(config('const.staff_zone.access_token_key'), $token);
 
-        // メニュー画面へリダイレクト
-        return redirect(action([self::class, 'menu']))->withCookie($tokenCookie);
+        // リダイレクト
+        $landingUrl =
+            $request->session()->pull(config('const.staff_zone.landing_url_key'))
+            ?? action([self::class, 'menu']);
+        return redirect($landingUrl)->withCookie($tokenCookie);
     }
 
     public function menu(Request $request)
