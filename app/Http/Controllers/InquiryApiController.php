@@ -39,14 +39,11 @@ class InquiryApiController extends Controller
 
     public function send(SendInquiryRequest $request, SendInquiryService $service)
     {
-        // リクエストパラメータを取り出す
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $type = $service->getTypeName();
-        $message = $request->input('message');
+        // 問い合わせ内容をデータベースに保存
+        $inquiry = $service->saveInquiry();
 
         // お問い合わせメールを送信
-        Mail::send(new InquiryMail($name, $email, $type, $message));
+        Mail::send(new InquiryMail($inquiry));
 
         // トークンを削除
         list($timestamp) = $request->extractToken();

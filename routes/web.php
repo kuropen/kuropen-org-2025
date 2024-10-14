@@ -35,6 +35,7 @@ Route::prefix('/staff-zone')
         Route::middleware(\App\Http\Middleware\StaffZoneEntryCheckMiddleware::class)
             ->group(function () {
                 Route::get('/menu', 'menu');
+                Route::get('/inquiry/show/{slug}', 'showInquiry')->name('staff.inquiry.show');
             });
     });
 

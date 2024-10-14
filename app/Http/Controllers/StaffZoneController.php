@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StaffAuthCallbackRequest;
 use App\Http\Requests\StaffAuthRequest;
+use App\Models\InquiryRecord;
 use App\Services\ExternalApi\Misskey\MiAuth;
 use App\Services\ExternalApi\Misskey\MisskeyUserApi;
 use Illuminate\Http\Request;
@@ -76,5 +77,20 @@ class StaffZoneController
     {
         $cookieRemove = Cookie::forget(config('const.staff_zone.access_token_key'));
         return redirect('/')->withCookie($cookieRemove);
+    }
+
+    public function showInquiry(string $slug)
+    {
+        $inquiry = InquiryRecord::where('slug', $slug)->firstOrFail();
+
+        // 問い合わせ種別を確認: Misskey関連でない場合は管理者のみ閲覧可
+        if (!$inquiry->type->misskey_related) {
+            $userInfo = request()->session()->get(config('const.staff_zone.current_user_info_key'));
+            if (!$userInfo['isAdmin']) {
+                abort(403, 'この問い合わせはMisskey関連ではないため、モデレーターは閲覧できません。');
+            }
+        }
+
+        return view('staff.inquiry.detail', compact('inquiry'));
     }
 }

@@ -1,7 +1,9 @@
 <p>{{config('app.name')}}のお問い合わせフォームに入力がありました。</p>
 <ul>
-<li>お名前: {{$name}}</li>
-<li>メールアドレス: {{$email}}</li>
-<li>お問い合わせ種別: {{$type}}</li>
-<li>お問い合わせ内容: {{$messageText}}</li>
+<li>お名前: {{$record->name}}</li>
+<li>メールアドレス: {{$record->email}}</li>
+<li>お問い合わせ種別: {{$record->type->name}}</li>
 </ul>
+<p>内容の詳細は以下で確認してください。<br />
+<a href="{{route('staff.inquiry.show', ['slug' => $slug])}}">{{route('staff.inquiry.show', ['slug' => $record->slug])}}</a>
+</p>
