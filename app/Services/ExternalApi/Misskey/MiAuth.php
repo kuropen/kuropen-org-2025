@@ -15,19 +15,21 @@ class MiAuth
     /**
      * MiAuthの認証リクエストURLを取得します。
      * @param UuidInterface $sessionUuid
-     * @param string $callbackTo
+     * @param string|null $callbackTo
      * @param array $permission
      * @return string
      */
-    public function getAuthRequestUrl(UuidInterface $sessionUuid, string $callbackTo, array $permission): string
+    public function getAuthRequestUrl(UuidInterface $sessionUuid, ?string $callbackTo, array $permission): string
     {
         $appName = config('app.name');
         $baseUrl = config('const.misskey.host') . "/miauth/{$sessionUuid->toString()}";
         $urlParameters = [
             'name' => $appName,
-            'callback' => url($callbackTo),
             'permission' => implode(',', $permission),
         ];
+        if (filled($callbackTo)) {
+            $urlParameters['callbackTo'] = url($callbackTo);
+        }
         return $baseUrl . '?' . http_build_query($urlParameters);
     }
 
