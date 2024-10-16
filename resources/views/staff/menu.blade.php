@@ -7,8 +7,9 @@
             <li>ユーザー名: {{$userName}}</li>
             <li>権限: {{$privilege}}</li>
         </ul>
-        <ul>
-            <li><a href="{{ route('staff.logout') }}">ログアウト</a></li>
+        <ul class="flex flex-col gap-4 my-4">
+            <li><a href="{{ route('staff.inquiry.list') }}" class="border rounded-lg p-2">問い合わせ内容確認</a></li>
+            <li><a href="{{ route('staff.logout') }}" class="text-white bg-red-800 rounded-lg p-2">ログアウト</a></li>
         </ul>
     </section>
 @endsection

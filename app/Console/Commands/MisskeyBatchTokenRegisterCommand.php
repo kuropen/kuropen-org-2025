@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\MisskeyBatchToken;
 use App\Services\ExternalApi\Misskey\MiAuth;
+use App\Services\ExternalApi\Misskey\MisskeyUserApi;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
 
@@ -26,26 +27,30 @@ class MisskeyBatchTokenRegisterCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(MiAuth $miAuth): void
+    public function handle(MiAuth $miAuth, MisskeyUserApi $userApi): void
     {
         $forRole = $this->choice('Which role do you want to register?', ['admin', 'normal'], 'normal');
         $isAdmin = $forRole === 'admin';
 
         $sessionUuid = Uuid::uuid4();
         $permission = $isAdmin ? [
-            'read:admin:meta', 'read:admin:show-user',
+            'read:admin:meta', 'read:admin:show-user', 'read:account',
         ] : [
-            'write:notes',
+            'write:notes', 'read:account',
         ];
         $authRequestUrl = $miAuth->getAuthRequestUrl($sessionUuid, null, $permission);
         $this->info('Please access the following URL and authenticate.');
         $this->info($authRequestUrl);
-        $this->ask('After authentication, press any key to continue.');
+        $this->ask('After authentication, press enter key to continue');
         $token = $miAuth->getAccessToken($sessionUuid);
-        MisskeyBatchToken::create([
+
+        $user = $userApi->getUserInfo($token);
+
+        MisskeyBatchToken::storeToken([
             'token' => $token,
             'is_admin' => $isAdmin,
             'permission' => implode(',', $permission),
+            'for_user' => $user['username'],
         ]);
         $this->info('Token has been registered.');
     }

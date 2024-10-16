@@ -12,9 +12,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // WARNING: no less than 5 minute interval, due to the limitation of Railway
+        // WARNING: Railwayの制限のため、スケジュールは5分刻みとすること
 
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('misskey:health-check')->everyFiveMinutes();
+        $schedule->command('misskey:check-blocked')->hourly();
         $schedule->command('document:load')->hourly();
         $schedule->command('document:check')->timezone('Asia/Tokyo')->dailyAt('2:30');
     }

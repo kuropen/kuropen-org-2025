@@ -8,18 +8,11 @@ use Illuminate\Support\Facades\Log;
 /**
  * Misskeyのユーザー情報を取得する処理を提供します。
  */
-class MisskeyUserApi
+class MisskeyUserApi extends MisskeyApiCommunicator
 {
     public function getUserInfo(string $accessToken)
     {
-        $request = Http::withToken($accessToken)
-            ->withBody('{}')
-            ->post(config('const.misskey.host') . '/api/i');
-        $response = $request->json();
-        if ($request->failed()) {
-            throw new \RuntimeException('Misskeyのユーザー情報の取得に失敗しました。');
-        }
-        return $response;
+        return $this->request('/api/i', $accessToken);
     }
 
     /**

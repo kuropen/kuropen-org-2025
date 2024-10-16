@@ -6,6 +6,7 @@ use App\Http\Controllers\StaffZoneController;
 use App\Services\ExternalApi\Misskey\MisskeyUserApi;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class StaffZoneEntryCheckMiddleware
@@ -18,10 +19,15 @@ class StaffZoneEntryCheckMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // アクセストークンがセッションに保存されているか確認
-        if (!($token = $request->cookie(config('const.staff_zone.access_token_key')))) {
+        if (blank($token = $request->cookie(config('const.staff_zone.access_token_key')))) {
+            $url = $request->fullUrl();
+
+            // $urlのドメイン名がアプリの設定と異なる場合は例外を投げる
+            abort_unless(compare_url($url, config('app.url')), 500, 'Wrong configuration about Application URL');
+
             return redirect()->action(
                 [StaffZoneController::class, 'index'],
-                ['landing' => $request->fullUrl()],
+                ['landing' => $url],
             );
         }
 

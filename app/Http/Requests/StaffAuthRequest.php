@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StaffAuthRequest extends FormRequest
@@ -29,5 +30,11 @@ class StaffAuthRequest extends FormRequest
                 'regex:/^' . preg_quote(config('app.url'), '/') . '/'
             ],
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        // オープンリダイレクト防止のためのバリデーションなので、失敗した場合は 400 Bad Request を返して終了
+        abort(400, 'Invalid request');
     }
 }

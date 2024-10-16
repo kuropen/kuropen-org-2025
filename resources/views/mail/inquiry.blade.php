@@ -5,5 +5,5 @@
 <li>お問い合わせ種別: {{$record->type->name}}</li>
 </ul>
 <p>内容の詳細は以下で確認してください。<br />
-<a href="{{route('staff.inquiry.show', ['slug' => $slug])}}">{{route('staff.inquiry.show', ['slug' => $record->slug])}}</a>
+<a href="{{route('staff.inquiry.show', ['slug' => $record->slug])}}">{{route('staff.inquiry.show', ['slug' => $record->slug])}}</a>
 </p>

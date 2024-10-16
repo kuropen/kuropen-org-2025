@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 /**
  * Misskeyの管理者APIを提供します。
  */
-class MisskeyAdminApi
+class MisskeyAdminApi extends MisskeyApiCommunicator
 {
     /**
      * メタデータを取得します。
@@ -35,9 +35,6 @@ class MisskeyAdminApi
      */
     public function getUsers(string $accessToken, array $params): array
     {
-        $request = Http::withToken($accessToken)
-            ->withBody(json_encode($params))
-            ->post(config('const.misskey.host') . '/api/admin/show-users');
-        return $request->json();
+        return $this->request('/api/admin/show-users', $accessToken, $params);
     }
 }

@@ -115,7 +115,7 @@ use Illuminate\Support\Facades\Http;
  * @property string|null $urlPreviewUserAgent
  * @property string|null $urlPreviewSummaryProxyUrl
  */
-class MisskeyAdminMetadata
+class MisskeyAdminMetadata extends MisskeyApiCommunicator
 {
     private array $metadata = [];
 
@@ -124,13 +124,7 @@ class MisskeyAdminMetadata
      * @param string $accessToken アクセストークン（管理者権限）
      */
     public function __construct(string $accessToken) {
-        $request = Http::withToken($accessToken)
-        ->withBody('{}')
-        ->post(config('const.misskey.host') . '/api/admin/meta');
-        if ($request->failed()) {
-            throw new \RuntimeException('Misskeyのメタデータの取得に失敗しました。');
-        }
-        $this->metadata = $request->json();
+        $this->metadata = $this->request('/api/admin/meta', $accessToken);
     }
 
     public function __get($name) {

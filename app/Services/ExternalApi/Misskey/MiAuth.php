@@ -28,7 +28,7 @@ class MiAuth
             'permission' => implode(',', $permission),
         ];
         if (filled($callbackTo)) {
-            $urlParameters['callbackTo'] = url($callbackTo);
+            $urlParameters['callback'] = url($callbackTo);
         }
         return $baseUrl . '?' . http_build_query($urlParameters);
     }

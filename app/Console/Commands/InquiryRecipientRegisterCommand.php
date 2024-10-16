@@ -43,7 +43,7 @@ class InquiryRecipientRegisterCommand extends Command
         // Misskeyのユーザー情報を取得する
         $this->info('Fetching users...');
 
-        $users = $api->getUsers($adminToken->token, ['origin' => 'local']);
+        $users = $api->getUsers($adminToken->getDecryptedToken(), ['origin' => 'local']);
 
         $this->info('Checking inquiry recipients...');
 

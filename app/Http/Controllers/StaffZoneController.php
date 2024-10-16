@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteInquiryRequest;
 use App\Http\Requests\StaffAuthCallbackRequest;
 use App\Http\Requests\StaffAuthRequest;
 use App\Models\InquiryRecord;
@@ -18,7 +19,7 @@ class StaffZoneController
         $landingUrl = $request->input('landing') ?: action([self::class, 'menu']);
 
         // アクセストークンがあればリダイレクト
-        if (Cookie::has(config('const.staff_zone.access_token_key'))) {
+        if ($request->cookie(config('const.staff_zone.access_token_key'))) {
             return redirect($landingUrl);
         }
 
@@ -92,5 +93,18 @@ class StaffZoneController
         }
 
         return view('staff.inquiry.detail', compact('inquiry'));
+    }
+
+    public function listInquiry()
+    {
+        $inquiries = InquiryRecord::orderBy('created_at', 'desc')->get();
+        return view('staff.inquiry.list', compact('inquiries'));
+    }
+
+    public function deleteInquiry(DeleteInquiryRequest $request)
+    {
+        $inquiry = InquiryRecord::findOrFail($request->input('id'));
+        $inquiry->delete();
+        return redirect()->route('staff.inquiry.list');
     }
 }

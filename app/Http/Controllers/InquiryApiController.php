@@ -42,15 +42,18 @@ class InquiryApiController extends Controller
         // 問い合わせ内容をデータベースに保存
         $inquiry = $service->saveInquiry();
 
-        // お問い合わせメールを送信
-        Mail::send(new InquiryMail($inquiry));
+        $message = 'メールを送信しました。';
+        // Misskey通知を送信し、失敗したら問い合わせメールを送信
+        if ($service->sendMisskeyNotification($inquiry)) {
+            $message = 'お問い合わせを送信しました。';
+        } else {
+            Mail::send(new InquiryMail($inquiry));
+        }
 
         // トークンを削除
         list($timestamp) = $request->extractToken();
         Cache::forget("token_{$timestamp}");
 
-        return response()->json([
-            'message' => 'メールを送信しました'
-        ]);
+        return response()->json(compact('message'));
     }
 }

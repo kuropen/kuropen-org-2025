@@ -34,8 +34,10 @@ Route::prefix('/staff-zone')
         Route::get('/logout', 'logout')->name('staff.logout');
         Route::middleware(\App\Http\Middleware\StaffZoneEntryCheckMiddleware::class)
             ->group(function () {
-                Route::get('/menu', 'menu');
+                Route::get('/menu', 'menu')->name('staff.menu');
+                Route::get('/inquiry/list', 'listInquiry')->name('staff.inquiry.list');
                 Route::get('/inquiry/show/{slug}', 'showInquiry')->name('staff.inquiry.show');
+                Route::post('/inquiry/delete', 'deleteInquiry')->name('staff.inquiry.delete');
             });
     });
 

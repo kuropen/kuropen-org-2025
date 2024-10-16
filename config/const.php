@@ -18,6 +18,8 @@ return [
         'api_key' => env('SIZU_ME_API_KEY'),
     ],
     'misskey' => [
+        'availability_key' => 'misskey_available',
+        'notification_account' => env('INQUIRY_NOTIFICATION_ACCOUNT', 'info'),
         'host' => 'https://mi.kuropen.org',
     ],
     'staff_zone' => [
