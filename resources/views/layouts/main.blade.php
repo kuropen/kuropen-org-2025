@@ -17,6 +17,11 @@
         </a>
     </header>
     @yield('content')
+    <footer>
+        <address class="not-italic">
+            All rights reserved. Copyright (C) {{date('Y')}} Kuropen.
+        </address>
+    </footer>
 </div>
 @vite('resources/js/app.ts')
 </body>

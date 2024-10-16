@@ -2,8 +2,8 @@
 
 @section('content')
     <section>
-        <h2 class="text-2xl">管理画面</h2>
-        <p>
+        <h2 class="text-2xl mb-2">管理画面</h2>
+        <p class="bg-red-800 text-white rounded-lg p-2">
             権限がないユーザーでログインしています。
             <a href="{{ route('staff.logout') }}" class="underline">ログアウト</a>してください。
         </p>

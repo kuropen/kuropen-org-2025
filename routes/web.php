@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [\App\Http\Controllers\DocumentRootController::class, 'index']);
 
 Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
 
