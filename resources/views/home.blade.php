@@ -90,7 +90,7 @@
         </div>
         <ul>
             <li class="border-b mb-2">
-                <a href="https://mi.kuropen.org" class="flex flex-row align-middle">
+                <a href="{{route('micropen.index')}}" class="flex flex-row align-middle">
                     <div class="flex-grow">
                         MICROPEN (Misskey Server)
                     </div>

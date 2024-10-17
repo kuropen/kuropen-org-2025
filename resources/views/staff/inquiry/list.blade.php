@@ -4,6 +4,18 @@
     <section>
         <h2 class="text-2xl mb-4 border-b border-b-gray-300">管理画面</h2>
         <h3 class="text-xl mb-2">問い合わせ内容一覧</h3>
+        @if($deleteStatus)
+            <div class="flex flex-row gap-2 bg-green-300 p-4 rounded-lg border">
+                <div class="shrink-0">
+                <span class="material-symbols-outlined">
+                    check_circle
+                </span>
+                </div>
+                <div class="grid grid-cols-1 gap-1">
+                    <p>削除に成功しました。</p>
+                </div>
+            </div>
+        @endif
         <ul class="mb-4">
             @foreach($inquiries as $inquiry)
                 <li class="my-1 flex flex-row p-1 gap-2">
@@ -13,12 +25,9 @@
                     <a href="{{ route('staff.inquiry.show', ['slug' => $inquiry->slug]) }}" class="border rounded-lg p-1">
                         表示
                     </a>
-                    <form action="{{route('staff.inquiry.delete')}}" method="post">
-                        @csrf
-                        <input type="hidden" name="id" value="{{$inquiry->id}}">
-                        <button type="submit" class="text-white bg-red-800 rounded-lg p-1"
-                                onclick="return confirm('本当に削除しますか？')">削除</button>
-                    </form>
+                    <a href="{{ URL::signedRoute('staff.inquiry.delete', ['slug' => $inquiry->slug]) }}" class="text-white bg-red-800 rounded-lg p-2">
+                        削除
+                    </a>
                 </li>
             @endforeach
         </ul>

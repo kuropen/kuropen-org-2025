@@ -33,8 +33,9 @@ Route::prefix('/contact')
 
 Route::prefix('/micropen')
     ->group(function () {
-        Route::get('/terms', [\App\Http\Controllers\MarkdownFileController::class, 'micropen_terms']);
-        Route::get('/blocked', [\App\Http\Controllers\MisskeyInformationController::class, 'blockedServers']);
+        Route::get('/', [\App\Http\Controllers\MisskeyInformationController::class, 'index'])->name('micropen.index');
+        Route::get('/terms', [\App\Http\Controllers\MarkdownFileController::class, 'micropen_terms'])->name('micropen.terms');
+        Route::get('/blocked', [\App\Http\Controllers\MisskeyInformationController::class, 'blockedServers'])->name('micropen.blocked');
     });
 
 Route::prefix('/pgn-archives')
@@ -55,7 +56,9 @@ Route::prefix('/staff-zone')
                 Route::get('/menu', 'menu')->name('staff.menu');
                 Route::get('/inquiry/list', 'listInquiry')->name('staff.inquiry.list');
                 Route::get('/inquiry/show/{slug}', 'showInquiry')->name('staff.inquiry.show');
-                Route::post('/inquiry/delete', 'deleteInquiry')->name('staff.inquiry.delete');
+                Route::get('/inquiry/delete/{slug}', 'deleteInquiry')
+                    ->name('staff.inquiry.delete')
+                    ->middleware('signed');
             });
     });
 

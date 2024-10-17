@@ -1,6 +1,9 @@
 ---
 title: MICROPEN terms
 category: misskey
+back_to:
+    title: MICROPEN情報
+    url: /micropen
 ---
 
 # MICROPEN利用規約

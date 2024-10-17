@@ -97,6 +97,8 @@ class StaffZoneController
 
     public function listInquiry()
     {
+        $deleteStatus = session('delete_status');
+
         $inquiriesQuery = InquiryRecord::orderBy('created_at', 'desc');
 
         // モデレーターはMisskey関連の問い合わせのみ表示
@@ -108,13 +110,13 @@ class StaffZoneController
         }
 
         $inquiries = $inquiriesQuery->get();
-        return view('staff.inquiry.list', compact('inquiries'));
+        return view('staff.inquiry.list', compact('inquiries', 'deleteStatus'));
     }
 
-    public function deleteInquiry(DeleteInquiryRequest $request)
+    public function deleteInquiry(string $slug)
     {
-        $inquiry = InquiryRecord::findOrFail($request->input('id'));
+        $inquiry = InquiryRecord::where('slug', $slug)->firstOrFail();
         $inquiry->delete();
-        return redirect()->route('staff.inquiry.list');
+        return redirect()->route('staff.inquiry.list')->with('delete_status', 'success');
     }
 }

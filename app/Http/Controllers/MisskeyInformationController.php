@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 
 class MisskeyInformationController extends Controller
 {
+    public function index()
+    {
+        return view('misskey_information.top');
+    }
     public function blockedServers()
     {
         $oldestBlockDate = BlockedFediverseServer::orderBy('blocked_at')->first()->blocked_at;
-        $blockedList = BlockedFediverseServer::orderBy('repealed_at', 'desc')->orderBy('blocked_at', 'desc')->get();
-        return view('misskey_information.block_list', compact('blockedList', 'oldestBlockDate'));
+        $blockedList = BlockedFediverseServer::orderBy('repealed_at')->orderBy('blocked_at')->get();
+        return response()->view(
+            'misskey_information.block_list',
+             compact('oldestBlockDate', 'blockedList'),
+        )->header('X-Robots-Tag', 'noindex'); // ブロックリストは検索エンジンにインデックスされないようにする
     }
 }
