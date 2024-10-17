@@ -8,6 +8,7 @@ use App\Models\InquiryType;
 use App\Models\MisskeyBatchToken;
 use App\Services\ExternalApi\Misskey\MisskeyNoteApi;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -35,16 +36,19 @@ class SendInquiryService
      * 問い合わせの内容をデータベースに保存する.
      * @return InquiryRecord
      */
-    public function saveInquiry(): InquiryRecord
+    public function saveInquiry(?Request $request = null): InquiryRecord
     {
+        if (!$request) {
+            $request = request();
+        }
         $inquiry = new InquiryRecord();
         $inquiry->slug = \Str::uuid();
-        $inquiry->name = request()->input('name');
-        $inquiry->email = request()->input('email');
+        $inquiry->name = $request->input('name');
+        $inquiry->email = $request->input('email');
         $inquiry->type_id = $this->getTypeId();
-        $inquiry->message = request()->input('message');
+        $inquiry->message = $request->input('message');
         $inquiry->ip = get_client_ip();
-        $inquiry->user_agent = request()->userAgent();
+        $inquiry->user_agent = $request->userAgent();
         $inquiry->save();
 
         return $inquiry;

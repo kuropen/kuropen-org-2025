@@ -75,4 +75,28 @@ class SendInquiryRequest extends FormRequest
             'message' => 'required',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        // 定義されている各バリデーションルールのエラーメッセージを日本語で定義
+        return [
+            'name.required' => '名前は必須です。',
+            'email.required' => 'メールアドレスは必須です。',
+            'email.email' => 'メールアドレスの形式が正しくありません。',
+            'type.required_without' => '問い合わせ種別は必須です。',
+            'type.prohibits' => '問い合わせ種別は不正です。',
+            'type.string' => '問い合わせ種別は文字列で指定してください。',
+            'type.in' => '問い合わせ種別が不正です。',
+            'type_id.required_without' => '問い合わせ種別は必須です。',
+            'type_id.prohibits' => '問い合わせ種別は不正です。',
+            'type_id.integer' => '問い合わせ種別が不正です。',
+            'type_id.in' => '問い合わせ種別が不正です。',
+            'message.required' => '問い合わせ内容は必須です。',
+        ];
+    }
 }

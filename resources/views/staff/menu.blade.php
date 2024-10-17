@@ -1,5 +1,5 @@
-@extends('layouts.main')
-
+@extends('layouts.subpage')
+@section('page_title', '管理画面')
 @section('content')
     <section>
         <h2 class="text-2xl">管理画面</h2>

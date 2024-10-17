@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{config('app.name')}}</title>
+    <title>@yield('page_title')@yield('title_separator'){{config('app.name')}}</title>
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -21,6 +21,9 @@
         <address class="not-italic">
             All rights reserved. Copyright (C) {{date('Y')}} Kuropen.
         </address>
+        <div>
+            <a href="{{ route('legal') }}" class="text-blue-800">プライバシーポリシー</a>
+        </div>
     </footer>
 </div>
 @vite('resources/js/app.ts')

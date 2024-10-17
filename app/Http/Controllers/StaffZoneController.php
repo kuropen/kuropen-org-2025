@@ -97,7 +97,17 @@ class StaffZoneController
 
     public function listInquiry()
     {
-        $inquiries = InquiryRecord::orderBy('created_at', 'desc')->get();
+        $inquiriesQuery = InquiryRecord::orderBy('created_at', 'desc');
+
+        // モデレーターはMisskey関連の問い合わせのみ表示
+        $userInfo = request()->session()->get(config('const.staff_zone.current_user_info_key'));
+        if (!$userInfo['isAdmin']) {
+            $inquiriesQuery->whereHas('type', function ($query) {
+                $query->where('misskey_related', true);
+            });
+        }
+
+        $inquiries = $inquiriesQuery->get();
         return view('staff.inquiry.list', compact('inquiries'));
     }
 

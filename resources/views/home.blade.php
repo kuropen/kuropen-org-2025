@@ -118,6 +118,9 @@
             <a href="https://status.kuropen.org/" class="border rounded-lg p-2">
                 障害・メンテナンス情報
             </a>
+            <a href="{{route('contact')}}" class="border rounded-lg p-2">
+                お問い合わせ
+            </a>
         </nav>
     </section>
     <section>

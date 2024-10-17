@@ -36,6 +36,7 @@ class MisskeyHealthCheckCommand extends Command
             $this->error('Misskey is dead.');
         }
 
-        Cache::put(config('const.misskey.availability_key'), $isAlive, \DateInterval::createFromDateString('5 minutes'));
+        // cronの発火タイミングずれおよびRedis接続エラーによる不発を考慮して、11分間有効なキャッシュを設定する
+        Cache::put(config('const.misskey.availability_key'), $isAlive, \DateInterval::createFromDateString('11 minutes'));
     }
 }

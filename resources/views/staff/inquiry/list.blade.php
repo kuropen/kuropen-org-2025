@@ -1,5 +1,5 @@
-@extends('layouts.main')
-
+@extends('layouts.subpage')
+@section('page_title', '問い合わせ一覧')
 @section('content')
     <section>
         <h2 class="text-2xl mb-4 border-b border-b-gray-300">管理画面</h2>

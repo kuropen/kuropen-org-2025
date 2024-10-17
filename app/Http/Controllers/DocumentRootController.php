@@ -12,4 +12,9 @@ class DocumentRootController extends Controller
         $documents = Document::limit(5)->orderBy('published_at', 'desc')->get();
         return view('home', compact('documents'));
     }
+
+    public function privacy()
+    {
+        return redirect()->route('legal');
+    }
 }
