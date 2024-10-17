@@ -14,4 +14,4 @@ Fediverse (Mastodon, Misskey, Pleroma等) のサーバーにアカウントを�
 @kuropen@mi.kuropen.org
 
 ### Fediverseサーバーにアカウントをお持ちでない場合
-[一般向けのメールフォーム](/contact/form/)をご利用ください。
+[一般向けのメールフォーム](/contact/form)をご利用ください。
