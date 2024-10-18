@@ -13,6 +13,7 @@ use Webuni\FrontMatter\Markdown\FrontMatterLeagueCommonMarkExtension;
  * @method \Illuminate\View\View legal()
  * @method \Illuminate\View\View contact()
  * @method \Illuminate\View\View micropen_terms()
+ * @method \Illuminate\View\View social_policy()
  */
 class MarkdownFileController extends Controller
 {

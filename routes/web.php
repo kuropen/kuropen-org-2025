@@ -20,6 +20,9 @@ Route::get('/privacy', [\App\Http\Controllers\DocumentRootController::class, 'pr
 Route::get('/legal', [\App\Http\Controllers\MarkdownFileController::class, 'legal'])
     ->name('legal');
 
+Route::get('/social_policy', [\App\Http\Controllers\MarkdownFileController::class, 'social_policy'])
+    ->name('social_policy');
+
 Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
 
 Route::prefix('/contact')

@@ -46,6 +46,12 @@
                 </div>
                 <div class="sr-only">GitHub</div>
             </a>
+            <a href="https://nostx.io/npub1r04snmtpkg36wn9220f358rymyvul5ew37fnhj5cqlwaf20ywrqqnmgg0k" class="col-span-2 border border-gray-800 rounded-lg p-2 flex flex-row gap-2 justify-center">
+                Nostr
+            </a>
+            <a href="{{route('social_policy')}}" class="col-span-2 border border-gray-800 rounded-lg p-2 flex flex-row gap-2 justify-center">
+                SNSポリシー
+            </a>
         </nav>
     </section>
     <section class="my-4 border border-indigo-700 rounded-xl p-4">
