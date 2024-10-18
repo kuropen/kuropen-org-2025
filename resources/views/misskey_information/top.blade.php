@@ -24,6 +24,18 @@
                 </a>
             </li>
             <li class="border-b mb-2">
+                <a href="{{route('micropen.how_to_follow')}}" class="flex flex-row align-middle">
+                    <div class="flex-grow">
+                        Kuropenのアカウントへのアクセス・フォロー
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined">
+                            chevron_right
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li class="border-b mb-2">
                 <a href="{{route('micropen.terms')}}" class="flex flex-row align-middle">
                     <div class="flex-grow">
                         利用規約

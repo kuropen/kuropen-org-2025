@@ -32,9 +32,10 @@ class StaffAuthRequest extends FormRequest
         ];
     }
 
-    public function failedValidation(Validator $validator)
+    public function failedValidation(Validator $validator): never
     {
-        // オープンリダイレクト防止のためのバリデーションなので、失敗した場合は 400 Bad Request を返して終了
-        abort(400, 'Invalid request');
+        // オープンリダイレクト防止のためのバリデーションなので、
+        // 失敗した場合は 421 Misdirected Request を返して終了
+        abort(421, 'Misdirected request.');
     }
 }

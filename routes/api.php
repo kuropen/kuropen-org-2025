@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
+Route::get('/health', [\App\Http\Controllers\HealthCheckApiController::class, 'healthCheck']);
+
+Route::middleware(\App\Http\Middleware\EncryptCookies::class)
+    ->put('cookie-policy/confirm', [\App\Http\Controllers\CookiePolicyController::class, 'confirm']);
+
 Route::prefix('inquiry')->controller(\App\Http\Controllers\InquiryApiController::class)->group(function () {
     Route::get('token', 'getToken');
     Route::get('types', 'getTypes');

@@ -22,19 +22,3 @@ if (!function_exists('compare_url')) {
         return true;
     }
 }
-
-if (!function_exists('get_client_ip')) {
-    /**
-     * クライアントのIPアドレスを取得する.
-     * この関数はCloudflareのCF-Connecting-IPヘッダーを考慮しています.
-     * @return string
-     */
-    function get_client_ip(): string
-    {
-        $request = request();
-        if ($request->hasHeader('CF-Connecting-IP')) {
-            return $request->header('CF-Connecting-IP');
-        }
-        return $request->ip();
-    }
-}

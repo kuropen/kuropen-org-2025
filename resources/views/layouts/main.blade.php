@@ -1,9 +1,10 @@
 <!doctype html>
-<html>
+<html lang="{{config('app.locale')}}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('page_title')@yield('title_separator'){{config('app.name')}}</title>
+    <meta name="csrf-token" content="{{csrf_token()}}">
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -16,6 +17,31 @@
             </div>
         </a>
     </header>
+    @if($cookiePolicyConfirmationRequired)
+        <aside class="flex flex-col gap-2 md:flex-row border border-orange-400 rounded-lg p-2" x-data="cookiePolicy" x-show="show">
+            <div class="md:flex-grow flex flex-col gap-1">
+                <h2 class="font-bold">
+                    電気通信事業法に基づく表示
+                </h2>
+                <p>
+                    このサイトで利用するCookie、このサイトを利用することによって外部事業者に送信される情報などの詳細は、以下をご覧ください。<br>
+                    <a href="{{route('legal')}}" class="text-blue-800">
+                        プライバシーポリシー <br class="md:hidden">
+                        (最終更新 {{\Illuminate\Support\Carbon::make((new DateTime())->setTimestamp($cookiePolicyLastModified))->format('Y年m月d日')}})
+                    </a>
+                </p>
+                <p class="text-sm">「確認」ボタンを押すと、以後プライバシーポリシーが更新されるまでこのメッセージは表示されません。</p>
+            </div>
+            <button
+                type="button"
+                id="cookie-policy-confirmation-button"
+                class="border rounded-lg py-2 px-6 bg-blue-800 text-white shrink-0"
+                x-on:click="confirmPolicy"
+            >
+                確認
+            </button>
+        </aside>
+    @endif
     @yield('content')
     <footer>
         <address class="not-italic">

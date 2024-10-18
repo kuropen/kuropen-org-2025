@@ -1,16 +1,7 @@
 @extends('layouts.subpage')
 @section('page_title', 'お問い合わせフォーム')
 @section('content')
-<section x-data="{
-    invalidTypeChoices: @json($types->filter(fn($type) => !$type->valid)->map(fn($type) => $type->id)->toArray()),
-    isSendButtonDisabled: true,
-    typeCheck() {
-        this.isSendButtonDisabled = this.invalidTypeChoices.includes(parseInt(this.$refs.typeSelect.value));
-    },
-    init() {
-        this.typeCheck();
-    }
-}">
+<section x-data="inquiryFormTool('{!! base64_encode(json_encode($types->map(fn($type) => ["id" => $type->id, "valid" => $type->valid, "description" => $type->description])->toArray())) !!}', '{!! $givenTypeId !!}')">
     <h2 class="text-2xl mb-4">Contact - お問い合わせフォーム</h2>
     <div class="my-4 flex flex-row gap-2 p-4 bg-yellow-200 rounded-lg border">
         <div class="shrink-0">
@@ -48,20 +39,20 @@
             <div class="grid grid-cols-1 gap-4">
                 <div>
                     <label for="name">お名前</label>
-                    <input type="text" name="name" id="name" value="{{old('name')}}" class="w-full border rounded-lg p-2">
+                    <input type="text" name="name" id="name" value="{{old('name')}}" class="w-full border rounded-lg p-2" required>
                 </div>
                 <div>
                     <label for="email">メールアドレス</label>
-                    <input type="email" name="email" id="email" value="{{old('email')}}" class="w-full border rounded-lg p-2">
+                    <input type="email" name="email" id="email" value="{{old('email')}}" class="w-full border rounded-lg p-2" required>
                 </div>
                 <div>
                     <label for="type_id">お問い合わせ種別</label>
                     <select
                         id="type_id"
-                        x-ref="typeSelect"
+                        x-model="selectedType"
                         x-on:change="typeCheck()"
                         name="type_id"
-                        class="w-full rounded-lg">
+                        class="w-full rounded-lg" required>
                         @foreach($types as $type)
                             <option value="{{$type->id}}" @selected($givenTypeId == $type->id)>{{$type->name}}</option>
                         @endforeach
@@ -69,7 +60,7 @@
                 </div>
                 <div>
                     <label for="message">お問い合わせ内容</label>
-                    <textarea name="message" rows="5" id="message" class="w-full border rounded-lg p-2">{{old('message')}}</textarea>
+                    <textarea :placeholder="selectedTypeDescription" name="message" rows="5" id="message" class="w-full border rounded-lg p-2" required>{{old('message')}}</textarea>
                 </div>
                 <div>
                     <button

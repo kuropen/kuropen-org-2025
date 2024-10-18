@@ -20,4 +20,8 @@ class MisskeyInformationController extends Controller
              compact('oldestBlockDate', 'blockedList'),
         )->header('X-Robots-Tag', 'noindex'); // ブロックリストは検索エンジンにインデックスされないようにする
     }
+    public function howToFollow()
+    {
+        return view('misskey_information.how_to_follow');
+    }
 }

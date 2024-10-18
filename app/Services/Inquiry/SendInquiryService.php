@@ -47,7 +47,7 @@ class SendInquiryService
         $inquiry->email = $request->input('email');
         $inquiry->type_id = $this->getTypeId();
         $inquiry->message = $request->input('message');
-        $inquiry->ip = get_client_ip();
+        $inquiry->ip = $request->ip();
         $inquiry->user_agent = $request->userAgent();
         $inquiry->save();
 

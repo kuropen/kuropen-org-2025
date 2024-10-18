@@ -23,7 +23,14 @@ class StaffZoneEntryCheckMiddleware
             $url = $request->fullUrl();
 
             // $urlのドメイン名がアプリの設定と異なる場合は例外を投げる
-            abort_unless(compare_url($url, config('app.url')), 500, 'Wrong configuration about Application URL');
+            abort_unless(
+                compare_url(
+                    $url,
+                    config('app.url')
+                ),
+                421,
+                'Misdirected request. Maybe wrong configuration about Application URL.'
+            );
 
             return redirect()->action(
                 [StaffZoneController::class, 'index'],

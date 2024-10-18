@@ -23,6 +23,7 @@ Route::get('/legal', [\App\Http\Controllers\MarkdownFileController::class, 'lega
 Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
 
 Route::prefix('/contact')
+    ->middleware(\App\Http\Middleware\TorDetectionMiddleware::class)
     ->group(function () {
         Route::get('/', [\App\Http\Controllers\MarkdownFileController::class, 'contact'])
             ->name('contact');
@@ -32,10 +33,17 @@ Route::prefix('/contact')
     });
 
 Route::prefix('/micropen')
+    ->middleware(\App\Http\Middleware\MisskeyAreaCheckMiddleware::class)
     ->group(function () {
         Route::get('/', [\App\Http\Controllers\MisskeyInformationController::class, 'index'])->name('micropen.index');
         Route::get('/terms', [\App\Http\Controllers\MarkdownFileController::class, 'micropen_terms'])->name('micropen.terms');
         Route::get('/blocked', [\App\Http\Controllers\MisskeyInformationController::class, 'blockedServers'])->name('micropen.blocked');
+        Route::get('/how_to_follow', [\App\Http\Controllers\MisskeyInformationController::class, 'howToFollow'])->name('micropen.how_to_follow');
+    });
+
+Route::prefix('/photos')
+    ->group(function () {
+        Route::get('/', [\App\Http\Controllers\PhotoController::class, 'index']);
     });
 
 Route::prefix('/pgn-archives')
