@@ -18,6 +18,14 @@ class StaffZoneEntryCheckMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // SummalyBot は Misskey 用のOGPクローラーのため、問い合わせ詳細ページへのアクセスに対しては専用のビューを返す
+        if (
+            str_contains($request->header('User-Agent'), 'SummalyBot')
+            && $request->routeIs('staff.inquiry.show')
+        ) {
+            return response()->view('staff.inquiry.for_ogp_crawler');
+        }
+
         // アクセストークンがセッションに保存されているか確認
         if (blank($token = $request->cookie(config('const.staff_zone.access_token_key')))) {
             $url = $request->fullUrl();

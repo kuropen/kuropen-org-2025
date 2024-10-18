@@ -13,6 +13,7 @@ class TrustProxies extends Middleware
      * @var array<int, string>|string|null
      */
     protected $proxies;
+    // WARNING: index.php で CF-Connecting-IP を REMOTE_ADDR に代入するため、TrustedProxiesは設定しないこと
 
     /**
      * The headers that should be used to detect proxies.
