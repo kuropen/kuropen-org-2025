@@ -1,0 +1,54 @@
+services:
+    db:
+        image: postgres:16
+        environment:
+            POSTGRES_PASSWORD: d4cc326a-fe5d-4d09-b694-2b160bc81919
+        restart: always
+        ports:
+            - "5432:5432"
+        volumes:
+            -  ./docker-resource/local-data/db:/var/lib/postgresql/data
+    redis:
+        image: redis:7.2
+        ports:
+            - "6379:6379"
+        environment:
+            REDIS_PASSWORD: 4f4fe114-a53e-4298-8f41-e25722c4508a
+    batch:
+        build: .
+        depends_on:
+            - db
+            - redis
+        command: "busybox crond -l 2 -L /dev/stderr -f"
+        volumes:
+            - ./.env:/var/www/html/.env:ro
+            - ./docker-resource/crontab:/var/spool/cron/crontabs/root:ro
+        environment:
+            DB_CONNECTION: pgsql
+            DB_HOST: db
+            DB_PORT: 5432
+            DB_DATABASE: postgres
+            DB_USERNAME: postgres
+            DB_PASSWORD: d4cc326a-fe5d-4d09-b694-2b160bc81919
+            REDIS_HOST: redis
+            REDIS_PORT: 6379
+            REDIS_PASSWORD: 4f4fe114-a53e-4298-8f41-e25722c4508
+    web:
+        build: .
+        ports:
+            - "8000:80"
+        depends_on:
+            - db
+            - redis
+        volumes:
+            - ./.env:/var/www/html/.env:ro
+        environment:
+            DB_CONNECTION: pgsql
+            DB_HOST: db
+            DB_PORT: 5432
+            DB_DATABASE: postgres
+            DB_USERNAME: postgres
+            DB_PASSWORD: d4cc326a-fe5d-4d09-b694-2b160bc81919
+            REDIS_HOST: redis
+            REDIS_PORT: 6379
+            REDIS_PASSWORD: 4f4fe114-a53e-4298-8f41-e25722c4508
