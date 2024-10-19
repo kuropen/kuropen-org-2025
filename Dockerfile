@@ -14,8 +14,8 @@ RUN a2enmod rewrite
 RUN a2enmod remoteip
 RUN /usr/local/bin/gen_remote_ip.sh | tee -a /etc/apache2/conf-available/remoteip.conf
 RUN a2enconf remoteip
-RUN apt update && apt install -y libpq-dev libxml2-dev
-RUN docker-php-ext-install pgsql xml
+RUN apt update && apt install -y libpq-dev libxml2-dev libzip-dev
+RUN docker-php-ext-install pgsql xml zip
 RUN docker-php-ext-enable opcache
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
