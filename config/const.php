@@ -35,4 +35,12 @@ return [
         'landing_url_key' => 'staff_landing_url',
     ],
     'cookie_policy_confirmation_key' => 'cookie_policy_confirmation',
+    'recaptcha' => [
+        'site_key' => env('RECAPTCHA_SITE_KEY'),
+        'threshold' => 0.5,
+    ],
+    'google_cloud' => [
+        'project' => env('GCP_PROJECT_ID'),
+        'api_key' => env('GCP_API_KEY'),
+    ],
 ];

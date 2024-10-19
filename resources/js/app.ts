@@ -26,7 +26,12 @@ Alpine.data('cookiePolicy', () => ({
 /**
  * PHP側のInquiryTypeモデルに対応する型
  */
-type InquiryType = { id: number, description: string, valid: boolean };
+type InquiryType = {
+    id: number,
+    description: string,
+    valid: boolean | 1 | 0,
+    invitation: boolean | 1 | 0,
+};
 /**
  * 問い合わせフォームのx-data
  */
@@ -34,6 +39,7 @@ type InquiryFormTool = {
     typeChoices: InquiryType[],
     selectedType: number | string,
     selectedTypeDescription: string,
+    selectedTypeIsInvitation: boolean,
     isSendButtonDisabled: boolean,
     typeCheck: () => void,
     init: () => void
@@ -44,14 +50,17 @@ Alpine.data<InquiryFormTool, string[]>('inquiryFormTool', (argTypeChoice: string
     selectedType: 0,
     selectedTypeDescription: '',
     isSendButtonDisabled: true,
+    selectedTypeIsInvitation: false,
     typeCheck() {
         const selectedTypeObject =
             this.typeChoices.find(
                 type =>
                     type.id === (typeof this.selectedType === 'string' ? parseInt(this.selectedType) : this.selectedType)
             );
+        console.log(selectedTypeObject);
         this.selectedTypeDescription = selectedTypeObject?.description || '';
-        this.isSendButtonDisabled = selectedTypeObject?.valid !== true;
+        this.isSendButtonDisabled = !selectedTypeObject?.valid;
+        this.selectedTypeIsInvitation = !!selectedTypeObject?.invitation;
     },
     init() {
         this.typeChoices = JSON.parse(atob(argTypeChoice));

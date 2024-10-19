@@ -22,9 +22,3 @@ Route::get('/health', [\App\Http\Controllers\HealthCheckApiController::class, 'h
 
 Route::middleware(\App\Http\Middleware\EncryptCookies::class)
     ->put('cookie-policy/confirm', [\App\Http\Controllers\CookiePolicyController::class, 'confirm']);
-
-Route::prefix('inquiry')->controller(\App\Http\Controllers\InquiryApiController::class)->group(function () {
-    Route::get('token', 'getToken');
-    Route::get('types', 'getTypes');
-    Route::post('send', 'send');
-});

@@ -57,22 +57,24 @@ class SendInquiryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $invitationTypeId = InquiryType::where('invitation', true)->first()->id;
         return [
             'name' => 'required',
             'email' => 'required|email',
             'type' => [
-                'required_without:type_id',
-                'prohibits:type_id',
-                'string',
-                Rule::in(InquiryType::getAvailableNames()),
+                'prohibited'
             ],
             'type_id' => [
-                'prohibits:type',
-                'required_without:type',
+                'required',
                 'integer',
                 Rule::in(InquiryType::getAvailableIds()),
             ],
             'message' => 'required',
+            'terms_agree' => [
+                'required_if:type_id,' . $invitationTypeId,
+                'accepted_if:type_id,' . $invitationTypeId,
+            ],
+            'g-recaptcha-response' => 'required',
         ];
     }
 
@@ -97,6 +99,9 @@ class SendInquiryRequest extends FormRequest
             'type_id.integer' => '問い合わせ種別が不正です。',
             'type_id.in' => '問い合わせ種別が不正です。',
             'message.required' => '問い合わせ内容は必須です。',
+            'terms_agree.required_if' => '利用規約・注意事項に同意する場合はチェックしてください。',
+            'terms_agree.accepted_if' => '利用規約・注意事項に同意する場合はチェックしてください。',
+            'g-recaptcha-response.required' => 'CAPTCHAの検証に失敗しました。',
         ];
     }
 }

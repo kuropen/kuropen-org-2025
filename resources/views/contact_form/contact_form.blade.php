@@ -1,7 +1,10 @@
 @extends('layouts.subpage')
 @section('page_title', 'お問い合わせフォーム')
+@section('head')
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+@endsection
 @section('content')
-<section x-data="inquiryFormTool('{!! base64_encode(json_encode($types->map(fn($type) => ["id" => $type->id, "valid" => $type->valid, "description" => $type->description])->toArray())) !!}', '{!! $givenTypeId !!}')">
+<section x-data="inquiryFormTool('{!! base64_encode(json_encode($types->map(fn($type) => ["id" => $type->id, "valid" => $type->valid, "description" => $type->description, "invitation" => $type->invitation])->toArray())) !!}', '{!! $givenTypeId !!}')">
     <h2 class="text-2xl mb-4">Contact - お問い合わせフォーム</h2>
     <div class="my-4 flex flex-row gap-2 p-4 bg-yellow-200 rounded-lg border">
         <div class="shrink-0">
@@ -28,7 +31,7 @@
                 <div>
                     <p>入力内容に不備があります。</p>
                     <ul x-ref="errorList">
-                        @foreach(['name', 'email', 'type_id', 'message'] as $field)
+                        @foreach(['name', 'email', 'type_id', 'message', 'captcha'] as $field)
                             @error($field)
                                 <li>{{ $message }}</li>
                             @enderror
@@ -61,6 +64,20 @@
                 <div>
                     <label for="message">お問い合わせ内容</label>
                     <textarea :placeholder="selectedTypeDescription" name="message" rows="5" id="message" class="w-full border rounded-lg p-2" required>{{old('message')}}</textarea>
+                </div>
+                <div class="my-4 flex flex-col gap-2 p-4 bg-yellow-200 rounded-lg border" x-show="selectedTypeIsInvitation">
+                    <p>
+                        お問い合わせ内容が「招待コード発行依頼」の場合、<a href="{{route('micropen.terms')}}" class="text-blue-800" target="_blank">MICROPEN利用規約</a>への同意が必要となります。<br>
+                        また、お問い合わせ内容に、面識のある当サーバーユーザーの名前や、そのユーザーとの関係性など、招待コードを発行すべきかどうか判断するための情報を含めてください。<br>
+                        これがない場合、請求を却下させていただきます。また、却下された場合の返信はいたしません。
+                    </p>
+                    <div class="flex flex-row gap-2 border p-2 justify-center">
+                        <input type="checkbox" name="terms_agree" id="terms_agree" value="true" class="border rounded-lg p-2">
+                        <label for="terms_agree">上記に同意する</label>
+                    </div>
+                </div>
+                <div class="mx-auto">
+                    <div class="g-recaptcha" data-sitekey="{{config('const.recaptcha.site_key')}}" data-action="contact_form"></div>
                 </div>
                 <div>
                     <button

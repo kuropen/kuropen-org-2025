@@ -14,6 +14,7 @@
     <meta name="og:type" content="website">
     <meta name="og:url" content="{{url()->current()}}">
     @vite('resources/css/app.css')
+    @yield('head')
 </head>
 <body>
 <div class="max-w-[896px] mx-auto my-12 px-7 md:px-10 flex flex-col gap-12">

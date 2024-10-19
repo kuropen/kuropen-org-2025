@@ -18,14 +18,14 @@
         @endif
         <ul class="mb-4">
             @foreach($inquiries as $inquiry)
-                <li class="my-1 flex flex-row p-1 gap-2">
-                    <div class="flex-grow">
+                <li class="my-1 grid grid-cols-2 md:flex md:flex-row p-2 gap-2 border-b">
+                    <div class="col-span-2 md:flex-grow">
                         {{$inquiry->created_at->timezone('Asia/Tokyo')->format('Y年m月d日 H:i:s')}}
                     </div>
-                    <a href="{{ route('staff.inquiry.show', ['slug' => $inquiry->slug]) }}" class="border rounded-lg p-1">
+                    <a href="{{ route('staff.inquiry.show', ['slug' => $inquiry->slug]) }}" class="border rounded-lg p-2 text-center">
                         表示
                     </a>
-                    <a href="{{ URL::signedRoute('staff.inquiry.delete', ['slug' => $inquiry->slug]) }}" class="text-white bg-red-800 rounded-lg p-2">
+                    <a href="{{ URL::signedRoute('staff.inquiry.delete', ['slug' => $inquiry->slug]) }}" class="text-white bg-red-800 rounded-lg p-2 text-center">
                         削除
                     </a>
                 </li>
