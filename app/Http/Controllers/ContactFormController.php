@@ -15,7 +15,7 @@ class ContactFormController extends Controller
     public function show(Request $request)
     {
         $givenTypeId = old('type_id') ?? $request->query('type');
-        $types = InquiryType::all();
+        $types = InquiryType::orderBy('id')->get();
         return view('contact_form.contact_form', compact(
             'types',
             'givenTypeId'
