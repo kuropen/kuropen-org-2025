@@ -12,8 +12,6 @@ services:
         image: redis:7.2
         ports:
             - "6379:6379"
-        environment:
-            REDIS_PASSWORD: 4f4fe114-a53e-4298-8f41-e25722c4508a
     batch:
         build: .
         depends_on:
@@ -30,9 +28,11 @@ services:
             DB_DATABASE: postgres
             DB_USERNAME: postgres
             DB_PASSWORD: d4cc326a-fe5d-4d09-b694-2b160bc81919
+            CACHE_DRIVER: redis
+            SESSION_DRIVER: redis
+            REDIS_CLIENT: predis
             REDIS_HOST: redis
             REDIS_PORT: 6379
-            REDIS_PASSWORD: 4f4fe114-a53e-4298-8f41-e25722c4508
     web:
         build: .
         ports:
@@ -49,6 +49,8 @@ services:
             DB_DATABASE: postgres
             DB_USERNAME: postgres
             DB_PASSWORD: d4cc326a-fe5d-4d09-b694-2b160bc81919
+            CACHE_DRIVER: redis
+            SESSION_DRIVER: redis
+            REDIS_CLIENT: predis
             REDIS_HOST: redis
             REDIS_PORT: 6379
-            REDIS_PASSWORD: 4f4fe114-a53e-4298-8f41-e25722c4508
