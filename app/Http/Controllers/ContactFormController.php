@@ -28,7 +28,7 @@ class ContactFormController extends Controller
         $captchaToken = $request->input('g-recaptcha-response');
         $assessment = $recaptchaService->createAssessment($request, 'contact_form', $captchaToken);
         if ($assessment['riskAnalysis']['score'] < config('const.recaptcha.threshold')) {
-            return redirect()->back()->withInput()->withErrors(['captcha' => 'CAPTCHAの検証に失敗しました。']);
+            return redirect()->back()->withInput()->withErrors(['g-recaptcha-response' => 'CAPTCHAの検証に失敗しました。']);
         }
 
         // 問い合わせ内容をデータベースに保存

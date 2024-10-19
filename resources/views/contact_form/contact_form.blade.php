@@ -31,7 +31,7 @@
                 <div>
                     <p>入力内容に不備があります。</p>
                     <ul x-ref="errorList">
-                        @foreach(['name', 'email', 'type_id', 'message', 'captcha'] as $field)
+                        @foreach(['name', 'email', 'type_id', 'message', 'terms_agree', 'g-recaptcha-response'] as $field)
                             @error($field)
                                 <li>{{ $message }}</li>
                             @enderror
