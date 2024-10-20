@@ -24,17 +24,22 @@ The content is in Japanese.
     - TypeScript 5.6
     - Alpine.js 3
     - Tailwind CSS 3 (with forms and typography plugins)
-- Production Platform:
-    - Cloudflare WAF
-    - Railway
 - Anti-bot:
     - reCaptcha v3
-- CI/CD:
-    - GitHub Actions
-- Monitoring: 
-    - BetterStack 
-- Logging:
-    - Papertrail
+
+## Production Environment
+```mermaid
+    graph TD
+        A(Client) <-- HTTPS --> B(Cloudflare)
+        B <-- HTTPS --> I
+        
+        subgraph Railway
+            I(Railway Gateway) <--> C
+            F(Railway Scheduler) -- Invoke every 5 minutes --> G(PHP Container for batch)
+            C(Web Container) <--> D[(PostgreSQL)] & E[(Redis)]
+            G(Batch container) <--> D & E
+        end
+```
 
 ## License for the code
 Please see the [LICENSE](LICENSE.md) file for the license of the code.
