@@ -1,8 +1,10 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+ */
 
 namespace App\Services\DocumentSources;
-
-use App\Services\DocumentSources\DocumentSource;
 
 /**
  * 後処理を行うDocumentSourceのインターフェイス.

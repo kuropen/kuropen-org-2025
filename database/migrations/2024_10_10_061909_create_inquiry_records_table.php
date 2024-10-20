@@ -1,4 +1,8 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

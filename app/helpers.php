@@ -1,4 +1,9 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+ */
+
 if (!function_exists('compare_url')) {
     /**
      * URLのスキームとホストが一致しているかどうかを比較する.

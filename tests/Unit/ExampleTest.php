@@ -1,5 +1,9 @@
 <?php
 
+// SPDX-FileCopyrightText: 2024 Kuropen
+//
+// SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Kuropen
+//
+// SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 import Alpine from "alpinejs";
 Object.assign(window, {Alpine});
 

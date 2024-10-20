@@ -1,8 +1,11 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+ */
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DeleteInquiryRequest;
 use App\Http\Requests\StaffAuthCallbackRequest;
 use App\Http\Requests\StaffAuthRequest;
 use App\Models\InquiryRecord;

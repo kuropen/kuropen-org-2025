@@ -1,4 +1,8 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+ */
 
 use Laravel\Sanctum\Sanctum;
 

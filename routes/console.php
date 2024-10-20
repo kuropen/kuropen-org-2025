@@ -1,5 +1,9 @@
 <?php
 
+// SPDX-FileCopyrightText: 2024 Kuropen
+//
+// SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 

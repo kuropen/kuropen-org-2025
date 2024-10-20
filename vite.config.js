@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Kuropen
+//
+// SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 

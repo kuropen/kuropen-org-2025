@@ -1,8 +1,10 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: BSL-1.0
+ */
 
 namespace App\Services\ExternalApi\Misskey;
-
-use Illuminate\Support\Facades\Http;
 
 /**
  * Misskeyのメタデータを取得する処理を提供します。

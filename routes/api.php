@@ -1,5 +1,9 @@
 <?php
 
+// SPDX-FileCopyrightText: 2024 Kuropen
+//
+// SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

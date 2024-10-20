@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Kuropen
+#
+# SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 FROM node:20 AS viteBuilder
 WORKDIR /app
 COPY . .

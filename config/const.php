@@ -1,4 +1,9 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+ */
+
 return [
     'site_description' => 'こちらはKuropenの個人サイトです。',
     'mail_send_to' => env('MAIL_SEND_TO'),

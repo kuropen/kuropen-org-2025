@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# SPDX-FileCopyrightText: 2024 Kuropen
+#
+# SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 # This script is used to run artisan commands on a remote server
 
 DB_SERVICE_NAME="Postgres"

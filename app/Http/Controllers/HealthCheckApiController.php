@@ -1,8 +1,10 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+ */
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 
 class HealthCheckApiController extends Controller
 {

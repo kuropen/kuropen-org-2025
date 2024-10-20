@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Kuropen
+//
+// SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [

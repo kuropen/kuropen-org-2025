@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Kuropen
+
+SPDX-License-Identifier: CC-BY-NC-SA-4.0
+-->
+
 <p>{{config('app.name')}}のお問い合わせフォームに入力がありました。</p>
 <ul>
 <li>お名前: {{$record->name}}</li>

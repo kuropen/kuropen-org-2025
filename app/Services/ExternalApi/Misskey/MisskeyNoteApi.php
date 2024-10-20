@@ -1,4 +1,8 @@
 <?php
+/*
+ * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-License-Identifier: BSL-1.0
+ */
 
 namespace App\Services\ExternalApi\Misskey;
 
