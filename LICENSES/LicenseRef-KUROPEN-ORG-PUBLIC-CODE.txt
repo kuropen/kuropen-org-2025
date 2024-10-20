@@ -16,7 +16,7 @@
 - Kuropenは、このコードのライセンスについて、2026年4月1日以降の任意のタイミングで、GNU Affero General Public License (AGPL) 3.0 もしくは
   それと互換性のあるライセンスに変更する権利を留保します。
 - このコードの派生物を不特定多数に公開されたサーバーに設置し、もしくは再配布する場合は、本条件と同等の利用条件もしくは上記の変更されうるライセンスの
-  いずれかを適用する必要があります。
+  いずれかを適用して、ソースコードを公開する必要があります。
 - このリポジトリの一部ファイルは、ファイルごとにオープンソースライセンスまたはその他の利用条件が設定されています。該当する場合は、その条件を優先します。
     - ビューおよびMarkdownファイル: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja)
     - 外部APIアクセス用コード: [BSL 1.0](https://opensource.org/licenses/BSL-1.0)
@@ -39,7 +39,7 @@
 - Kuropen reserves the right to change the license of this code to the GNU Affero General Public License (AGPL) 3.0
   or a compatible license at any time after April 1, 2026.
 - If you deploy or redistribute derivatives of this code on a server that is open to the public, you must apply
-  equivalent terms of use or one of the licenses that may be changed as described above.
+  equivalent terms of use or the above-mentioned license that may be changed, and you must publish the source code.
 - Some files in this repository have open source licenses or other terms of use set for each file.
   If applicable, those terms take precedence.
     - Views and Markdown files: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
