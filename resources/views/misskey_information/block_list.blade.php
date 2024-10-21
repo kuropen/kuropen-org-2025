@@ -10,30 +10,52 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     <section>
         <h2 class="text-xl mb-2">MICROPENからブロックされているサーバー</h2>
         <p class="mb-2">以下のサーバーは当サーバーからブロックされています。</p>
-        <table class="mx-auto table-auto">
-            <tr class="border">
-                <th>ホスト名</th>
-                <th>ブロック実施日</th>
-                <th>ブロック解除日</th>
-            </tr>
-            @foreach($blockedList as $blocked)
+
+        <div class="m-4">
+            <ul class="flex flex-row gap-4 justify-center" role="tablist">
+                <li role="tab">
+                    <a href="{{route('micropen.blocked', ['repealed' => false])}}" class="m-2 p-2 border-b-4 text-center @unless($showRepealed) border-green-400 @endunless">
+                        ブロック実施中
+                    </a>
+                </li>
+                <li role="tab">
+                    <a href="{{route('micropen.blocked', ['repealed' => true])}}" class="m-2 p-2 border-b-4 text-center @if($showRepealed) border-green-400 @endif">
+                        解除済み
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        @empty($blockedList)
+            <p class="border rounded-lg p-4">表示対象のサーバーはありません。</p>
+        @else
+            <table class="mx-auto table-auto">
                 <tr class="border">
-                    <td>{{$blocked->hostname}}</td>
-                    <td class="px-2">
-                        {{\Illuminate\Support\Carbon::make($blocked->blocked_at)->format('Y年m月d日')}}{{--
-                        --}}@if(\Illuminate\Support\Carbon::make($blocked->blocked_at)->format('YMD')
-                                == \Illuminate\Support\Carbon::make($oldestBlockDate)->format('YMD'))以前@endif
-                    </td>
-                    <td>
-                        @if(is_null($blocked->repealed_at))
-                            継続中
-                        @else
-                            {{\Illuminate\Support\Carbon::make($blocked->repealed_at)->format('Y年m月d日')}}
-                        @endif
-                    </td>
+                    <th>ホスト名</th>
+                    @if($showRepealed)
+                        <th>ブロック解除日</th>
+                    @else
+                        <th>ブロック実施日</th>
+                    @endif
                 </tr>
-            @endforeach
-        </table>
+                @foreach($blockedList as $blocked)
+                    <tr class="border">
+                        <td>{{$blocked->hostname}}</td>
+                        @if($showRepealed)
+                            <td class="pl-2">
+                                {{\Illuminate\Support\Carbon::make($blocked->repealed_at)->format('Y年m月d日')}}
+                            </td>
+                        @else
+                            <td class="pl-2">
+                                {{\Illuminate\Support\Carbon::make($blocked->blocked_at)->format('Y年m月d日')}}{{--
+                                --}}@if(\Illuminate\Support\Carbon::make($blocked->blocked_at)->format('YMD')
+                                        == \Illuminate\Support\Carbon::make($oldestBlockDate)->format('YMD'))以前@endif
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </table>
+        @endempty
     </section>
     <section>
         <a href="{{route('micropen.index')}}" class="border rounded-lg p-2 flex flex-row gap-2 w-fit">

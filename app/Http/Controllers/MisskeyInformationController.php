@@ -6,6 +6,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BlockedServerInformationRequest;
 use App\Models\BlockedFediverseServer;
 use Illuminate\Http\Request;
 
@@ -15,13 +16,20 @@ class MisskeyInformationController extends Controller
     {
         return view('misskey_information.top');
     }
-    public function blockedServers()
+    public function blockedServers(BlockedServerInformationRequest $request)
     {
+        $showRepealed = $request->input('repealed', false);
         $oldestBlockDate = BlockedFediverseServer::orderBy('blocked_at')->first()->blocked_at;
-        $blockedList = BlockedFediverseServer::orderBy('repealed_at')->orderBy('blocked_at')->get();
+        $blockedListQuery = BlockedFediverseServer::orderBy('blocked_at');
+        if ($showRepealed) {
+            $blockedListQuery->whereNotNull('repealed_at');
+        } else {
+            $blockedListQuery->whereNull('repealed_at');
+        }
+        $blockedList = $blockedListQuery->get();
         return response()->view(
             'misskey_information.block_list',
-             compact('oldestBlockDate', 'blockedList'),
+             compact('oldestBlockDate', 'blockedList', 'showRepealed'),
         )->header('X-Robots-Tag', 'noindex'); // ブロックリストは検索エンジンにインデックスされないようにする
     }
     public function howToFollow()

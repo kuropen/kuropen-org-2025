@@ -48,4 +48,7 @@ return [
         'project' => env('GCP_PROJECT_ID'),
         'api_key' => env('GCP_API_KEY'),
     ],
+    'sql_log' => [
+        'slow_query_time' => 2000,
+    ],
 ];
