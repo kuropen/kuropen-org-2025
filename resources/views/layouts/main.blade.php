@@ -60,9 +60,10 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     @yield('content')
     <footer>
         <address class="not-italic">
-            All rights reserved. Copyright (C) {{date('Y')}} Kuropen.
+            Copyright (C) {{date('Y')}} Kuropen.
         </address>
-        <div>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4">
+            <a href="{{ route('about') }}" class="text-blue-800">サイト情報・著作権について</a>
             <a href="{{ route('legal') }}" class="text-blue-800">プライバシーポリシー</a>
         </div>
     </footer>

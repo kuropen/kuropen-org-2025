@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\DocumentRootController::class, 'index']);
 
+Route::get('/about', [\App\Http\Controllers\MarkdownFileController::class, 'about'])
+    ->name('about');
+
 Route::get('/privacy', [\App\Http\Controllers\DocumentRootController::class, 'privacy']);
 
 Route::get('/legal', [\App\Http\Controllers\MarkdownFileController::class, 'legal'])
