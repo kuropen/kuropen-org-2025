@@ -7,13 +7,14 @@ services:
         image: postgres:16
         environment:
             POSTGRES_PASSWORD: d4cc326a-fe5d-4d09-b694-2b160bc81919
-        restart: always
+        restart: unless-stopped
         ports:
             - "5432:5432"
         volumes:
             -  ./docker-resource/local-data/db:/var/lib/postgresql/data
     redis:
         image: redis:7.2
+        restart: unless-stopped
         ports:
             - "6379:6379"
     batch:
@@ -22,6 +23,7 @@ services:
             - db
             - redis
         command: "busybox crond -l 2 -L /dev/stderr -f"
+        restart: unless-stopped
         volumes:
             - ./.env:/var/www/html/.env:ro
             - ./docker-resource/crontab:/var/spool/cron/crontabs/root:ro
@@ -40,7 +42,7 @@ services:
     web:
         build: .
         ports:
-            - "8000:80"
+            - "8000:8000"
         depends_on:
             - db
             - redis
