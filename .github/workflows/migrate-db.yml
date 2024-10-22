@@ -33,16 +33,16 @@ jobs:
         - name: Setting target service
           run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -s web
           env:
-            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+            RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Fetch environment variables on Railway
           run: railway variables --json | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
           env:
-            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+            RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Checking Public Database URL on Railway
           id: db_check
           run: railway variables -s Postgres --json | jq -r 'to_entries | .[] | select(.key == "DATABASE_PUBLIC_URL") | ["DATABASE_URL", (.value | @sh)] | join("=")' >> "$GITHUB_OUTPUT"
           env:
-            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+            RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Installing PHP dependencies
           run: composer install
         - name: Run migration
