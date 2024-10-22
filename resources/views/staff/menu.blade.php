@@ -12,6 +12,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         <ul>
             <li>ログインユーザー: {{$userName}} (権限: {{$privilege}})</li>
             <li>システム情報: {{str(app()->environment())->headline()}}, Laravel v{{ Illuminate\Foundation\Application::VERSION }}, PHP v{{ PHP_VERSION }}</li>
+            <li>IPアドレス: {{request()->ip()}}</li>
         </ul>
         <ul class="flex flex-col gap-4 my-4">
             <li class="border-b mb-2">

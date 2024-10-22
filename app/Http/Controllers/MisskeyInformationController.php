@@ -19,7 +19,7 @@ class MisskeyInformationController extends Controller
     public function blockedServers(BlockedServerInformationRequest $request)
     {
         $showRepealed = $request->input('repealed', false);
-        $oldestBlockDate = BlockedFediverseServer::orderBy('blocked_at')->first()->blocked_at;
+        $oldestBlockDate = BlockedFediverseServer::orderBy('blocked_at')->firstOrFail()->blocked_at;
         $blockedListQuery = BlockedFediverseServer::orderBy('blocked_at');
         if ($showRepealed) {
             $blockedListQuery->whereNotNull('repealed_at');
