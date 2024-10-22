@@ -8,7 +8,7 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-FROM php:8.1-apache
+FROM php:8.3-apache
 COPY docker-resource/gen_remote_ip.sh /usr/local/bin/gen_remote_ip.sh
 RUN chmod +x /usr/local/bin/gen_remote_ip.sh
 

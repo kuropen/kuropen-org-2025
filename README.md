@@ -13,7 +13,7 @@ The content is in Japanese.
 
 ## Technology Stack
 - Backend Program:
-    - PHP 8.1 (for local testing environment issue; soon to be upgraded to 8.3)
+    - PHP 8.3
     - Laravel 10
 - Database:
     - PostgreSQL 16 (some test is done with SQLite 3)
