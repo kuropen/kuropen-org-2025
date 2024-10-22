@@ -108,4 +108,15 @@ class SendInquiryRequest extends FormRequest
             'g-recaptcha-response.required' => 'CAPTCHAの検証に失敗しました。',
         ];
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function ip(): string|null
+    {
+        if ($cloudflareForwardedIp = $this->header('CF-Connecting-IP')) {
+            return $cloudflareForwardedIp;
+        }
+        return parent::ip();
+    }
 }
