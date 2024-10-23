@@ -30,6 +30,9 @@ Route::get('/legal', [\App\Http\Controllers\MarkdownFileController::class, 'lega
 Route::get('/social_policy', [\App\Http\Controllers\MarkdownFileController::class, 'social_policy'])
     ->name('social_policy');
 
+Route::get('/pengreen', [\App\Http\Controllers\MarkdownFileController::class, 'pengreen'])
+    ->name('pengreen');
+
 Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
 
 Route::prefix('/contact')

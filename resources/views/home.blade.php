@@ -135,7 +135,12 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
             </a>
         </nav>
     </section>
-    <section>
+    <section class="flex flex-row justify-center">
+        <a href="{{route('pengreen')}}" class="w-fit mx-auto">
+            <img src="/images/PENGREEN-banner.png" class="max-w-96" alt="PENGREEN - 環境への取り組み" />
+        </a>
+    </section>
+    <section class="flex flex-row justify-center">
         <a href="/staff-zone" class="border rounded-lg p-2">
             管理画面ログイン
         </a>
