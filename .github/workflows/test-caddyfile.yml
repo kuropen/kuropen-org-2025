@@ -39,4 +39,4 @@ jobs:
       - name: Build caddy with caddy-supervisor
         run: xcaddy build v${{steps.caddy_version_check.outputs.CADDY_VERSION}} --with github.com/baldinof/caddy-supervisor
       - name: Test Caddyfile
-        run: ./caddy run --config ./docker-resource/Caddyfile --adapter caddyfile
+        run: ./caddy validate -c ./docker-resource/Caddyfile
