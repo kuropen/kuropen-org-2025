@@ -33,7 +33,14 @@ class StaffZoneController
         $sessionUuid = Uuid::uuid4();
         $callbackTo = action([self::class, 'authCallback']);
         $permission = ['read:account'];
-        return redirect($miAuth->getAuthRequestUrl($sessionUuid, $callbackTo, $permission));
+        return redirect(
+            $miAuth->getAuthRequestUrl(
+                $sessionUuid,
+                $callbackTo,
+                $permission,
+                ' (管理画面ログイン)'
+            )
+        );
     }
 
     public function authCallback(StaffAuthCallbackRequest $request, MiAuth $miAuth, MisskeyUserApi $userApi)

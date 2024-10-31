@@ -42,7 +42,12 @@ class MisskeyBatchTokenRegisterCommand extends Command
         ] : [
             'write:notes', 'read:account',
         ];
-        $authRequestUrl = $miAuth->getAuthRequestUrl($sessionUuid, null, $permission);
+        $authRequestUrl = $miAuth->getAuthRequestUrl(
+            $sessionUuid,
+            null,
+            $permission,
+            ' (Batch Token)'
+        );
         $this->info('Please access the following URL and authenticate.');
         $this->info($authRequestUrl);
         $this->ask('After authentication, press enter key to continue');

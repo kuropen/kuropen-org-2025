@@ -26,9 +26,8 @@ class MisskeyBatchToken extends Model
     public static function storeToken(array $tokenData): MisskeyBatchToken
     {
         // 同じ条件で作成されたトークンのデータがすでにあれば、それを削除する。
-        // 条件とは、 is_admin が true であるか、そうでなければ for_user が同じであること。
         self::where('is_admin', $tokenData['is_admin'])
-            ->orWhere('for_user', $tokenData['for_user'])
+            ->where('for_user', $tokenData['for_user'])
             ->each(function ($token) {
                 // トークンの削除はinfoログに記録する
                 Log::info('MisskeyBatchToken: Token deleted', $token->toArray());
