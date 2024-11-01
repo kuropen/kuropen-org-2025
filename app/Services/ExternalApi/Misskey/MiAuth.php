@@ -21,11 +21,17 @@ class MiAuth
      * @param UuidInterface $sessionUuid
      * @param string|null $callbackTo
      * @param array $permission
+     * @param string $appNameSuffix
      * @return string
      */
-    public function getAuthRequestUrl(UuidInterface $sessionUuid, ?string $callbackTo, array $permission): string
+    public function getAuthRequestUrl(
+        UuidInterface $sessionUuid,
+        ?string $callbackTo,
+        array $permission,
+        string $appNameSuffix = ''
+    ): string
     {
-        $appName = config('app.name');
+        $appName = config('app.name') . $appNameSuffix;
         $baseUrl = config('const.misskey.host') . "/miauth/{$sessionUuid->toString()}";
         $urlParameters = [
             'name' => $appName,
