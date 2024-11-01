@@ -120,6 +120,16 @@ return [
             'processors' => [PsrLogMessageProcessor::class],
         ],
 
+        'betterstack' => [
+            'driver' => 'monolog',
+            'level' => env('LOG_LEVEL', 'debug'),
+            'handler' => Logtail\Monolog\LogtailHandler::class,
+            'handler_with' => [
+                'sourceToken' => env('BETTERSTACK_TOKEN'),
+            ],
+            'processors' => [PsrLogMessageProcessor::class],
+        ],
+
         'syslog' => [
             'driver' => 'syslog',
             'level' => env('LOG_LEVEL', 'debug'),
