@@ -14,7 +14,7 @@ The content is in Japanese.
 ## Technology Stack
 - Backend Program:
     - PHP 8.3
-    - Laravel 10
+    - Laravel 11
 - Database:
     - PostgreSQL 16 (some test is done with SQLite 3)
     - Redis 7.2
@@ -26,6 +26,8 @@ The content is in Japanese.
     - Tailwind CSS 3 (with forms and typography plugins)
 - Anti-bot:
     - reCaptcha v3
+- Logging:
+    - Better Stack
 
 ## Production Environment
 ```mermaid
