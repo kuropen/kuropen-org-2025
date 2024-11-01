@@ -20,6 +20,7 @@ class Document extends Model
         'url',
         'published_at',
         'data_source',
+        'misskey_note_id',
     ];
 
     /**
