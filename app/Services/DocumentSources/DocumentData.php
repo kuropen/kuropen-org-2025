@@ -12,4 +12,5 @@ class DocumentData
     public string $url;
     public string $publishedAt;
     public string $sourceName;
+    public ?string $misskey_note_id;
 }

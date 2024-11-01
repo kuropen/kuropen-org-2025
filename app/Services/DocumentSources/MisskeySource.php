@@ -6,15 +6,12 @@
 
 namespace App\Services\DocumentSources;
 
+use App\Models\Document;
 use App\Models\InquiryRecipient;
 use App\Services\ExternalApi\Misskey\MisskeyNoteApi;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
 
-class MisskeySource implements DocumentSourceWithFollowingTask
+class MisskeySource implements DocumentSource
 {
-
-    const string LAST_RUN_DATE_CACHE_KEY = 'misskey_source_last_run_date';
 
     private bool $isNotExecuted;
 
@@ -39,7 +36,7 @@ class MisskeySource implements DocumentSourceWithFollowingTask
 
         $params = [
             'userId' => $targetUser->misskey_id,
-            'withReplies' => false,
+            'withReplies' => true,
             'withRenotes' => true,
             'withChannelNotes' => false,
             'limit' => 100,
@@ -47,10 +44,23 @@ class MisskeySource implements DocumentSourceWithFollowingTask
             'untilDate' => now()->subMinutes(10)->getTimestampMs(),
         ];
 
-        // キャッシュから最終実行日時を取得
-        $lastRunDate = Cache::get(self::LAST_RUN_DATE_CACHE_KEY);
-        if ($lastRunDate) {
-            $params['sinceDate'] = Carbon::make($lastRunDate)->getTimestampMs();
+        // 最後に記録した投稿のIDを取得
+        $lastMisskeyDocument = Document::where('data_source', $this->getSourceName())
+            ->whereNotNull('misskey_note_id')
+            ->orderBy('published_at', 'desc')
+            ->first();
+        if ($lastMisskeyDocument) {
+            $params['sinceId'] = $lastMisskeyDocument->misskey_note_id;
+        } else {
+            // misskey_note_id カラムが追加された後の投稿がまだ記録されていないときは、
+            // https://mi.kuropen.org/ からURLが始まる記録済みの投稿を使う
+            $lastMisskeyDocument = Document::where('data_source', $this->getSourceName())
+                ->where('url', 'like', 'https://mi.kuropen.org/%')
+                ->orderBy('published_at', 'desc')
+                ->first();
+            if ($lastMisskeyDocument) {
+                $params['sinceId'] = str($lastMisskeyDocument->url)->afterLast('/')->__toString();
+            }
         }
 
         $notes = $this->misskeyNoteApi->getNoteByUser($params);
@@ -79,6 +89,7 @@ class MisskeySource implements DocumentSourceWithFollowingTask
             $document->url = $url;
             $document->publishedAt = $note['createdAt'];
             $document->sourceName = $this->getSourceName();
+            $document->misskey_note_id = $note['id'];
             return $document;
         }, $notes);
     }
@@ -89,18 +100,5 @@ class MisskeySource implements DocumentSourceWithFollowingTask
     public function getSourceName(): string
     {
         return 'misskey';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function done(): void
-    {
-        if ($this->isNotExecuted) {
-            return;
-        }
-        // 最終実行日時をキャッシュに保存
-        $lastRunDate = now()->toIso8601String();
-        Cache::forever(self::LAST_RUN_DATE_CACHE_KEY, $lastRunDate);
     }
 }
