@@ -51,6 +51,7 @@ class SizuMeSource implements DocumentSourceWithFollowingTask
             $document->title = $article['title'];
             $document->url = "https://sizu.me/kuropen/posts/{$slug}";
             $document->publishedAt = $article['createdAt'];
+            $document->sourceName = $this->getSourceName();
             return $document;
         }, $sizuMeArticles);
     }

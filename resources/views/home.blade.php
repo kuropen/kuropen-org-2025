@@ -58,38 +58,14 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
             <a href="{{route('social_policy')}}" class="col-span-2 border border-gray-800 rounded-lg p-2 flex flex-row gap-2 justify-center">
                 SNSポリシー
             </a>
-        </nav>
-    </section>
-    <section class="my-4 border border-indigo-700 rounded-xl p-4">
-        <div class="flex flex-row gap-2 justify-center">
-            <span class="material-symbols-outlined">
-                article
-            </span>
-            <h2 class="text-xl mb-2">Latest Articles</h2>
-        </div>
-        <ul>
-            @foreach($documents as $document)
-                <li class="border-b mb-2">
-                    <a href="{{ $document->url }}" class="flex flex-row align-middle">
-                        <div class="flex-grow">
-                            {{ $document->title }}
-                            ({{\Carbon\Carbon::make($document->published_at)->format('Y年m月d日')}})
-                        </div>
-                        <div>
-                            <span class="material-symbols-outlined">
-                                chevron_right
-                            </span>
-                        </div>
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-        <nav class="grid grid-cols-2 gap-2">
-            <a href="https://sizu.me/kuropen" class="border border-gray-800 rounded-lg p-2">
+            <a href="https://sizu.me/kuropen" class="col-span-2 border border-gray-800 rounded-lg p-2 text-center">
                 しずかなインターネット
             </a>
-            <a href="https://penguinone.notion.site/cc3b0e9ccab34bbf95c2bec97dc1e673" class="border border-gray-800 rounded-lg p-2">
+            <a href="https://penguinone.notion.site/cc3b0e9ccab34bbf95c2bec97dc1e673" class="col-span-2 border border-gray-800 rounded-lg p-2 text-center">
                 雑記帳過去記事 <small>(2023年10月まで)</small>
+            </a>
+            <a href="{{route('planet')}}" class="col-span-4 border border-gray-800 rounded-lg p-2 text-center text-lg">
+                Planet Penguinone (統合タイムライン)
             </a>
         </nav>
     </section>

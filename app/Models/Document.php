@@ -19,6 +19,7 @@ class Document extends Model
         'title',
         'url',
         'published_at',
+        'data_source',
     ];
 
     /**
@@ -34,6 +35,7 @@ class Document extends Model
                 [
                     'title' => $document->title,
                     'published_at' => $document->publishedAt,
+                    'data_source' => $document->sourceName,
                 ]
             );
         }

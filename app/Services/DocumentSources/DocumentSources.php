@@ -17,6 +17,7 @@ class DocumentSources
     private static array $availableSources = [
         ClassicArchiveSource::class,
         SizuMeSource::class,
+        MisskeySource::class,
     ];
 
     /**

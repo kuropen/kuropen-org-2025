@@ -21,6 +21,7 @@ class ClassicArchiveSource implements DocumentSource
             // configには日付のみで書かれているが、念のため時刻情報を付加する
             $publishedAtDate = $redirectTable['published_at'];
             $document->publishedAt = "{$publishedAtDate}T00:00:00+09:00";
+            $document->sourceName = $this->getSourceName();
             return $document;
         }, config('inherited_data.redirect_table'));
     }

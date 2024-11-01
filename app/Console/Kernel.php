@@ -20,8 +20,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('misskey:health-check')->everyFiveMinutes();
         $schedule->command('misskey:check-blocked')->hourly();
-        $schedule->command('document:load')->hourly();
-        $schedule->command('document:check')->timezone('Asia/Tokyo')->dailyAt('2:30');
+        $schedule->command('document:load')->everyThirtyMinutes();
+//        $schedule->command('document:check')->timezone('Asia/Tokyo')->dailyAt('2:30');
         $schedule->command('inquiry:recipient-register')->daily();
     }
 

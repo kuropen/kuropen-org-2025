@@ -33,6 +33,9 @@ Route::get('/social_policy', [\App\Http\Controllers\MarkdownFileController::clas
 Route::get('/pengreen', [\App\Http\Controllers\MarkdownFileController::class, 'pengreen'])
     ->name('pengreen');
 
+Route::get('/planet', [\App\Http\Controllers\PlanetController::class, 'index'])
+    ->name('planet');
+
 Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
 
 Route::prefix('/contact')

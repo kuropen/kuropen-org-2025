@@ -33,4 +33,26 @@ class MisskeyNoteApi extends MisskeyApiCommunicator
     {
         return $this->request('/api/notes/create', $accessToken, $params);
     }
+
+    /**
+     * 指定したユーザーのノートを取得する.
+     * @param array{
+     *     userId: string,
+     *     withReplies?: boolean,
+     *     withRenotes?: boolean,
+     *     withChannelNotes?: boolean,
+     *     limit?: number,
+     *     sinceId?: string,
+     *     untilId?: string,
+     *     sinceDate?: number,
+     *     untilDate?: number,
+     *     allowPartial?: boolean,
+     *     withFiles?: boolean,
+     * } $params
+     * @return array|mixed
+     */
+    public function getNoteByUser(array $params)
+    {
+        return $this->request('/api/users/notes', params: $params);
+    }
 }
