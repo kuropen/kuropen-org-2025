@@ -39,12 +39,12 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     <div class="rounded-lg p-4 border">
         @php($previousPublishedDate = null)
         @foreach($documents as $document)
-            @if($previousPublishedDate !== ($publishedDate = \Carbon\Carbon::make($document->published_at)->format('Y/m/d')))
+            @if($previousPublishedDate !== ($publishedDate = \Carbon\Carbon::make($document->published_at)->timezone('Asia/Tokyo')->format('Y/m/d')))
                 <h3 class="text-xl mb-4">{{$publishedDate}}</h3>
                 @php($previousPublishedDate = $publishedDate)
             @endif
             <div class="border-b mb-4">
-                <a href="{{ $document->url }}" class="flex flex-row align-middle gap-2">
+                <a href="{{ $document->url }}" target="_blank" class="flex flex-row align-middle gap-2">
                     <div>
                         @if($document->data_source === 'misskey')
                             <div class="w-6 h-6">
@@ -62,7 +62,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     </div>
                     <div class="flex-grow break-all">
                         {{ $document->title }}
-                        (<span class="text-blue-800">{{ \Carbon\Carbon::make($document->published_at)->format('H:i') }}</span>)
+                        (<span class="text-blue-800">{{ \Carbon\Carbon::make($document->published_at)->timezone('Asia/Tokyo')->format('H:i') }}</span>)
                     </div>
                 </a>
             </div>
