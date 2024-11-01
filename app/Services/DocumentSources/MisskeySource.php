@@ -41,6 +41,8 @@ class MisskeySource implements DocumentSourceWithFollowingTask
             'withRenotes' => true,
             'withChannelNotes' => false,
             'limit' => 100,
+            // 書き直しの可能性があるため、10分前までのノートを取得
+            'untilDate' => now()->subMinutes(10)->getTimestampMs(),
         ]);
 
         return array_map(function ($note) {
