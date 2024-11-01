@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('Documents', function (Blueprint $table) {
+        Schema::table('documents', function (Blueprint $table) {
             $table->string('data_source')->nullable()->after('published_at');
         });
     }
 
     public function down(): void
     {
-        Schema::table('Documents', function (Blueprint $table) {
+        Schema::table('documents', function (Blueprint $table) {
             $table->dropColumn('data_source');
         });
     }
