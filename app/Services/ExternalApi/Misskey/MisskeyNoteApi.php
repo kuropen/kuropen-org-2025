@@ -6,6 +6,8 @@
 
 namespace App\Services\ExternalApi\Misskey;
 
+use Illuminate\Support\Facades\Log;
+
 class MisskeyNoteApi extends MisskeyApiCommunicator
 {
     /**
@@ -53,6 +55,7 @@ class MisskeyNoteApi extends MisskeyApiCommunicator
      */
     public function getNoteByUser(array $params)
     {
+        Log::debug('MisskeyNoteApi::getNoteByUser', $params);
         return $this->request('/api/users/notes', params: $params);
     }
 }

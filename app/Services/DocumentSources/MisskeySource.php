@@ -8,6 +8,7 @@ namespace App\Services\DocumentSources;
 
 use App\Models\InquiryRecipient;
 use App\Services\ExternalApi\Misskey\MisskeyNoteApi;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class MisskeySource implements DocumentSourceWithFollowingTask
@@ -35,7 +36,8 @@ class MisskeySource implements DocumentSourceWithFollowingTask
             $this->isNotExecuted = true;
             return [];
         }
-        $notes = $this->misskeyNoteApi->getNoteByUser([
+
+        $params = [
             'userId' => $targetUser->misskey_id,
             'withReplies' => false,
             'withRenotes' => true,
@@ -43,7 +45,15 @@ class MisskeySource implements DocumentSourceWithFollowingTask
             'limit' => 100,
             // 書き直しの可能性があるため、10分前までのノートを取得
             'untilDate' => now()->subMinutes(10)->getTimestampMs(),
-        ]);
+        ];
+
+        // キャッシュから最終実行日時を取得
+        $lastRunDate = Cache::get(self::LAST_RUN_DATE_CACHE_KEY);
+        if ($lastRunDate) {
+            $params['sinceDate'] = Carbon::make($lastRunDate)->getTimestampMs();
+        }
+
+        $notes = $this->misskeyNoteApi->getNoteByUser($params);
 
         return array_map(function ($note) {
             $document = new DocumentData();
