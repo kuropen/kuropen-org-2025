@@ -31,7 +31,7 @@ jobs:
             extensions: mbstring, pgsql, readline, xml
             tools: composer
         - name: Setting target service
-          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -s web
+          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e production -s web
           env:
             RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Fetch environment variables on Railway
