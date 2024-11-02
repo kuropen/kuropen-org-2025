@@ -28,7 +28,7 @@ class BlueskySource implements DocumentSource
             if ($authorDid !== $currentAccountDid) {
                 // repost
                 $text = "RP @{$postItem['author']['handle']}: {$postItem['record']['text']}";
-                $publishedAt = $postItem['reason']['by']['createdAt'];
+                $publishedAt = $item['reason']['by']['createdAt'];
             } elseif (isset($item['reply'])) {
                 $text = "@{$item['reply']['parent']['author']['handle']} {$postItem['record']['text']}";
             } else {

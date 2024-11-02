@@ -54,7 +54,7 @@ jobs:
           run: composer install
         - name: Wait 1 minute for the database to be ready
           run: sleep 60
-          if: github.event_name == 'pull_request'
+          if: github.event_name == 'pull_request' && github.event.action == 'opened'
         - name: Run migration
           run: php artisan migrate --force
           env:
