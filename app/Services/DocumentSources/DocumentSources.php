@@ -18,6 +18,7 @@ class DocumentSources
         ClassicArchiveSource::class,
         SizuMeSource::class,
         MisskeySource::class,
+        BlueskySource::class,
     ];
 
     /**
