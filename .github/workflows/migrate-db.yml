@@ -62,6 +62,6 @@ jobs:
             DATABASE_URL: ${{ steps.db_check.outputs.DATABASE_URL }}
         - name: Run migration
           run: php artisan migrate --force
-          if: github.event_name != 'pull_request' && github.event.action != 'opened'
+          if: github.event_name != 'pull_request' || github.event.action != 'opened'
           env:
             DATABASE_URL: ${{ steps.db_check.outputs.DATABASE_URL }}
