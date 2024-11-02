@@ -38,7 +38,7 @@ jobs:
         - name: Setting target service
           # -e option is the target environment name:
           # production for main branch, "kuropen-org-2025-pr-<PR_NUMBER>" for PR
-          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e ${{ github.ref == 'refs/heads/main' && 'value_for_main_branch' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }} -s web
+          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e ${{ github.ref == 'refs/heads/main' && 'production' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }} -s web
           env:
             RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Fetch environment variables on Railway
