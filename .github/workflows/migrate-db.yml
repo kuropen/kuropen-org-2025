@@ -11,6 +11,11 @@ on:
     paths:
       - .github/workflows/migrate-db.yml
       - database/migrations/*
+  pull_request:
+    types:
+        - opened
+        - synchronize
+        - reopened
 
 jobs:
   migration:
@@ -31,7 +36,9 @@ jobs:
             extensions: mbstring, pgsql, readline, xml
             tools: composer
         - name: Setting target service
-          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e production -s web
+          # -e option is the target environment name:
+          # production for main branch, "kuropen-org-2025-pr-<PR_NUMBER>" for PR
+          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e ${{ github.ref == 'refs/heads/main' && 'value_for_main_branch' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }} -s web
           env:
             RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Fetch environment variables on Railway
