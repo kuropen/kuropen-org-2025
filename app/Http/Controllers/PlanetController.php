@@ -7,16 +7,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\LoadDocumentLog;
 
 class PlanetController extends Controller
 {
     public function index()
     {
+        $lastRunLog = LoadDocumentLog::where('is_success', true)
+            ->orderBy('run_date', 'desc')
+            ->first();
         // 検索範囲は過去1週間以内かつ100件
         $documents = Document::orderBy('published_at', 'desc')
             ->where('published_at', '>=', now()->subWeek())
             ->limit(100)
             ->get();
-        return view('planet', ['documents' => $documents]);
+        return view('planet', compact('documents', 'lastRunLog'));
     }
 }

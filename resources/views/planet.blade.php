@@ -41,6 +41,10 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 <a href="https://bsky.app/profile/kuropen.org">Bluesky</a>
             </li>
         </ul>
+        <p class="my-4">
+            @isset($lastRunLog)最終取得: {{ \Carbon\Carbon::make($lastRunLog->run_date)->timezone('Asia/Tokyo')->format('Y/m/d H:i') }}<br>@endisset
+            30分に1回取得します。MICROPENは取得時刻10分前以降の投稿は表示されません。
+        </p>
     </div>
     <div class="rounded-lg p-4 border">
         @php($previousPublishedDate = null)
