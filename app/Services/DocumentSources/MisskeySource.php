@@ -59,7 +59,7 @@ class MisskeySource implements DocumentSource
                 ->orderBy('published_at', 'desc')
                 ->first();
             if ($lastMisskeyDocument) {
-                $params['sinceId'] = str($lastMisskeyDocument->url)->afterLast('/')->__toString();
+                $params['sinceId'] = str($lastMisskeyDocument->url)->afterLast('/')->toString();
             }
         }
 
@@ -78,14 +78,14 @@ class MisskeySource implements DocumentSource
                     // Content Warningがある場合はその内容を表示
                     $renoteText = $renoted['cw'];
                 }
-                $text = "RN {$renoted['user']['username']}@{$renoted['user']['host']}: {$renoteText}";
+                $text = "RN @{$renoted['user']['username']}@{$renoted['user']['host']}: {$renoteText}";
                 $url = $renoted['url'] ?? $renoted['uri'];
             } else if ($note['cw']) {
                 // Content Warningがある場合はその内容を表示
                 $text = $note['cw'];
             }
 
-            $document->title = str($text)->limit(100);
+            $document->title = str($text)->limit(100)->toString();
             $document->url = $url;
             $document->publishedAt = $note['createdAt'];
             $document->sourceName = $this->getSourceName();

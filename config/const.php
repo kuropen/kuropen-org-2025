@@ -34,6 +34,9 @@ return [
             "GB", "T1",
         ],
     ],
+    'bluesky' => [
+        'proxy_url' => env('ATP_PROXY_URL', 'http://atp-proxy.railway.internal:3000'),
+    ],
     'staff_zone' => [
         'access_token_key' => 'staff_access_token',
         'current_user_info_key' => 'staff_current_user_info',

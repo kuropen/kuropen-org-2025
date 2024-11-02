@@ -15,6 +15,8 @@ The content is in Japanese.
 - Backend Program:
     - PHP 8.3
     - Laravel 11
+    - Node.js 20 (for ATP Proxy)
+    - Hono (for ATP Proxy)
 - Database:
     - PostgreSQL 16 (some test is done with SQLite 3)
     - Redis 7.2
@@ -40,8 +42,11 @@ The content is in Japanese.
             F(Railway Scheduler) -- Invoke every 5 minutes --> G(PHP Container for batch)
             C(Web Container) <--> D[(PostgreSQL)] & E[(Redis)]
             G(Batch container) <--> D & E
+            H(ATP Proxy container) <--> G
         end
 ```
+
+Note: Source code for ATP Proxy is placed in https://github.com/kuropen/pgn2025-atp-proxy.
 
 ## License for the code
 Please see the [LICENSE](LICENSE.md) file for the license of the code.
