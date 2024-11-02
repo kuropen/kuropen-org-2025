@@ -83,6 +83,8 @@ Route::prefix('/staff-zone')
                 Route::get('/inquiry/delete/{slug}', 'deleteInquiry')
                     ->name('staff.inquiry.delete')
                     ->middleware('signed');
+                Route::get('/planet', 'showPlanetDeleteForm')->name('staff.planet.show_delete');
+                Route::post('/planet/delete', 'executePlanetDelete')->name('staff.planet.delete');
             });
     });
 

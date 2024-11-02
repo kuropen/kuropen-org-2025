@@ -6,8 +6,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlanetDeleteRequest;
 use App\Http\Requests\StaffAuthCallbackRequest;
 use App\Http\Requests\StaffAuthRequest;
+use App\Models\Document;
 use App\Models\InquiryRecord;
 use App\Services\ExternalApi\Misskey\MiAuth;
 use App\Services\ExternalApi\Misskey\MisskeyUserApi;
@@ -17,6 +19,18 @@ use Ramsey\Uuid\Uuid;
 
 class StaffZoneController
 {
+    /**
+     * モデレーターがアクセスした場合は例外をスローして終了する
+     * @return void
+     */
+    private function adminOnly(): void
+    {
+        $userInfo = request()->session()->get(config('const.staff_zone.current_user_info_key'));
+        if (!$userInfo['isAdmin']) {
+            abort(403, 'このページはモデレーターは閲覧できません。');
+        }
+    }
+
     public function index(StaffAuthRequest $request, MiAuth $miAuth)
     {
         $landingUrl = $request->input('landing') ?: action([self::class, 'menu']);
@@ -96,10 +110,7 @@ class StaffZoneController
 
         // 問い合わせ種別を確認: Misskey関連でない場合は管理者のみ閲覧可
         if (!$inquiry->type->misskey_related) {
-            $userInfo = request()->session()->get(config('const.staff_zone.current_user_info_key'));
-            if (!$userInfo['isAdmin']) {
-                abort(403, 'この問い合わせはMisskey関連ではないため、モデレーターは閲覧できません。');
-            }
+            $this->adminOnly();
         }
 
         return view('staff.inquiry.detail', compact('inquiry'));
@@ -125,8 +136,27 @@ class StaffZoneController
 
     public function deleteInquiry(string $slug)
     {
+        // モデレーターには削除はさせない
+        $this->adminOnly();
+
         $inquiry = InquiryRecord::where('slug', $slug)->firstOrFail();
         $inquiry->delete();
         return redirect()->route('staff.inquiry.list')->with('delete_status', 'success');
+    }
+
+    public function showPlanetDeleteForm()
+    {
+        $this->adminOnly();
+        $deleteStatus = session('delete_status');
+        return view('staff.planet_delete', compact('deleteStatus'));
+    }
+
+    public function executePlanetDelete(PlanetDeleteRequest $request)
+    {
+        $this->adminOnly();
+        $url = $request->input('url');
+        $document = Document::where('url', $url)->first();
+        $document->delete();
+        return redirect()->route('staff.planet.show_delete')->with('delete_status', 'success');
     }
 }

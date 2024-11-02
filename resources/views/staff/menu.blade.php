@@ -28,6 +28,18 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 </a>
             </li>
             <li class="border-b mb-2">
+                <a href="{{ route('staff.planet.show_delete') }}" class="flex flex-row align-middle">
+                    <div class="flex-grow">
+                        Planet Penguinone コンテンツ削除
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined">
+                            chevron_right
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li class="border-b mb-2">
                 <a href="{{ route('staff.inquiry.list') }}" class="flex flex-row align-middle">
                     <div class="flex-grow text-red-800">
                         ログアウト
