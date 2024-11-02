@@ -52,6 +52,9 @@ jobs:
             RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Installing PHP dependencies
           run: composer install
+        - name: Wait 1 minute for the database to be ready
+          run: sleep 60
+          if: github.event_name == 'pull_request'
         - name: Run migration
           run: php artisan migrate --force
           env:
