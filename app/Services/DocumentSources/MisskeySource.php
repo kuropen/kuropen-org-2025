@@ -78,8 +78,9 @@ class MisskeySource implements DocumentSource
                     // Content Warningがある場合はその内容を表示
                     $renoteText = $renoted['cw'];
                 }
-                $text = "RN @{$renoted['user']['username']}@{$renoted['user']['host']}: {$renoteText}";
-                $url = $renoted['url'] ?? $renoted['uri'];
+                $originalUserHost = $renoted['user']['host'] ?? 'mi.kuropen.org';
+                $text = "RN @{$renoted['user']['username']}@{$originalUserHost}: {$renoteText}";
+                $url = $renoted['url'] ?? $renoted['uri'] ?? $url;
             } else if ($note['cw']) {
                 // Content Warningがある場合はその内容を表示
                 $text = $note['cw'];
