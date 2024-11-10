@@ -49,7 +49,7 @@ jobs:
       - name: Setting target service
         # -e option is the target environment name:
         # production for main branch, "kuropen-org-2025-pr-<PR_NUMBER>" for PR
-        run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e ${{ github.ref == 'refs/heads/main' && 'staging' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }} -s web
+        run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e ${{ (github.event_name != 'pull_request_target' && github.ref == 'refs/heads/main') && 'staging' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }} -s web
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
       - name: Fetch environment variables on Railway
@@ -79,7 +79,7 @@ jobs:
   prd-migration:
     name: "Run migration on Production"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request_target'
     steps:
         - uses: actions/checkout@v4
         - name: Use Node.js 20
