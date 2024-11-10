@@ -113,10 +113,10 @@ jobs:
           run: composer install
         - name: Wait 1 minute for the database to be ready
           run: sleep 60
-          if: github.event_name == 'pull_request' && github.event.action == 'opened'
+          if: (github.event_name == 'pull_request' || github.event_name == 'pull_request_target') && github.event.action == 'opened'
         - name: Run migration with seed
           run: php artisan migrate:fresh --seed --force
-          if: github.event_name == 'pull_request' && github.event.action == 'opened'
+          if: (github.event_name == 'pull_request' || github.event_name == 'pull_request_target') && github.event.action == 'opened'
           env:
             DATABASE_URL: ${{ steps.db_check.outputs.DATABASE_URL }}
         - name: Run migration
