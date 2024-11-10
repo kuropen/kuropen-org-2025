@@ -16,13 +16,24 @@ on:
         - opened
         - synchronize
         - reopened
+  pull_request_target:
+    branches:
+      - main
 
 jobs:
   stg-migration:
     name: "Run migration on Staging"
     runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     steps:
       - uses: actions/checkout@v4
+        if: ${{ github.event_name != 'pull_request_target' }}
+      - uses: actions/checkout@v4
+        if: ${{ github.event_name == 'pull_request_target' }}
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:

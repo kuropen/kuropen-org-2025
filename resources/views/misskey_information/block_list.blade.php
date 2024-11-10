@@ -43,11 +43,11 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         <td>{{$blocked->hostname}}</td>
                         @if($showRepealed)
                             <td class="pl-2">
-                                {{\Illuminate\Support\Carbon::make($blocked->repealed_at)->format('Y年m月d日')}}
+                                {{\Illuminate\Support\Carbon::make($blocked->repealed_at)->timezone('Asia/Tokyo')->format('Y年m月d日')}}
                             </td>
                         @else
                             <td class="pl-2">
-                                {{\Illuminate\Support\Carbon::make($blocked->blocked_at)->format('Y年m月d日')}}{{--
+                                {{\Illuminate\Support\Carbon::make($blocked->blocked_at)->timezone('Asia/Tokyo')->format('Y年m月d日')}}{{--
                                 --}}@if(\Illuminate\Support\Carbon::make($blocked->blocked_at)->format('YMD')
                                         == \Illuminate\Support\Carbon::make($oldestBlockDate)->format('YMD'))以前@endif
                             </td>
