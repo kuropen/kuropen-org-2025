@@ -16,7 +16,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         </div>
         <nav class="grid grid-cols-4 gap-4">
             <a href="{{route('micropen.how_to_follow')}}" class="col-span-2 border border-gray-800 rounded-lg p-2 flex flex-row gap-2 justify-center">
-                <img src="/images/MICROPEN-logo.png" class="w-8 h-8 md:w-12 md:h-12" alt="" />
+                <img src="{{ Vite::asset('resources/images/MICROPEN-logo.png') }}" class="w-8 h-8 md:w-12 md:h-12" alt="" />
                 <div>
                     <div class="text-sm md:text-lg">MICROPEN <wbr> (Misskey)</div>
                     <div class="hidden md:block">@kuropen@mi.kuropen.org</div>
@@ -38,7 +38,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 <div class="sr-only">X</div>
             </a>
             <a href="https://www.instagram.com/kuropen" class="border border-gray-800 rounded-lg p-2">
-                <img src="/images/instagram.png" class="mx-auto w-8 h-8 md:w-12 md:h-12" alt="Instagram" />
+                <img src="{{ Vite::asset('resources/images/instagram.png') }}" class="mx-auto w-8 h-8 md:w-12 md:h-12" alt="Instagram" />
             </a>
             <a href="https://www.threads.net/kuropen" class="border border-gray-800 rounded-lg p-2">
                 <div class="w-8 h-8 md:w-12 md:h-12 p-1 mx-auto">
@@ -135,7 +135,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
             </a>
             <div class="col-span-2 flex flex-row justify-center">
                 <a href="{{route('pengreen')}}" class="w-fit mx-auto">
-                    <img src="/images/PENGREEN-banner.png" class="md:w-96 rounded-lg" alt="PENGREEN - 環境への取り組み" />
+                    <img src="{{ Vite::asset('resources/images/PENGREEN-banner.png') }}" class="md:w-96 rounded-lg" alt="PENGREEN - 環境への取り組み" />
                 </a>
             </div>
         </nav>

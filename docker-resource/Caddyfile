@@ -21,9 +21,6 @@
 		X-FRAME-OPTIONS DENY
 		-X-Powered-By
 	}
-	header /images/* {
-		Cache-Control "public, max-age=86400, s-maxage=86400"
-	}
     header /favicon.ico {
         Cache-Control "public, max-age=86400, s-maxage=86400"
     }

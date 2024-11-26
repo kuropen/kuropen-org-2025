@@ -46,7 +46,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 <h3 class="sr-only">Misskeyの場合</h3>
                 <div class="flex flex-col md:flex-row gap-4">
                     <p>
-                        <img src="/images/follow_misskey_1.png" alt="Misskeyの場合のフォロー手順">
+                        <img src="{{ Vite::asset('resources/images/follow_misskey_1.png') }}" alt="Misskeyの場合のフォロー手順">
                     </p>
                     <ol class="list-decimal pl-4">
                         <li>メニューの「もっと！」→「照会」をクリックします。</li>
@@ -58,7 +58,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 <h3 class="sr-only">Mastodonの場合</h3>
                 <div class="flex flex-col md:flex-row gap-4">
                     <p>
-                        <img src="/images/follow_mastodon_1.png" alt="Mastodonの場合のフォロー手順">
+                        <img src="{{ Vite::asset('resources/images/follow_mastodon_1.png') }}" alt="Mastodonの場合のフォロー手順">
                     </p>
                     <p>
                         画面の検索ボックスに <strong>@kuropen@mi.kuropen.org</strong> と入力します。
