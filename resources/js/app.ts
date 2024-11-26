@@ -2,6 +2,11 @@
 //
 // SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
 
+import.meta.glob([
+    '../images/**/*.png',
+    '../images/**/*.jpg',
+]);
+
 import Alpine from "alpinejs";
 Object.assign(window, {Alpine});
 

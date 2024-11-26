@@ -27,7 +27,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     <header class="flex flex-col md:flex-row items-center md:items-start gap-3">
         <a href="/" class="md:flex-grow">
             <div class="flex flex-row gap-3">
-                <img src="/images/penguin.png" alt="" class="w-10 h-10 rounded-full">
+                <img src="{{ Vite::asset('resources/images/penguin.png') }}" alt="" class="w-10 h-10 rounded-full">
                 <h1 class="text-2xl inter">{{config('app.name')}}</h1>
             </div>
         </a>
