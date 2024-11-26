@@ -109,11 +109,6 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
             <a href="{{route('contact')}}" class="border border-gray-800 rounded-lg p-2">
                 お問い合わせ
             </a>
-            <div class="col-span-2 flex flex-row justify-center">
-                <a href="{{route('pengreen')}}" class="w-fit mx-auto">
-                    <img src="{{ Vite::asset('resources/images/PENGREEN-banner.png') }}" class="md:w-96 rounded-lg" alt="PENGREEN - 環境への取り組み" />
-                </a>
-            </div>
         </nav>
     </section>
     <section class="flex flex-row justify-center">
