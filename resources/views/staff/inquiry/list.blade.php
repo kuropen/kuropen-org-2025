@@ -1,8 +1,8 @@
-<!--
+{{--
 SPDX-FileCopyrightText: 2024 Kuropen
 
 SPDX-License-Identifier: CC-BY-NC-SA-4.0
--->
+--}}
 
 @extends('layouts.subpage')
 @section('page_title', '問い合わせ一覧')
