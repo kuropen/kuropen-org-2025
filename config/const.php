@@ -31,7 +31,7 @@ return [
             "AT", "BE", "BG", "CH", "CY", "CZ", "DE", "DK", "EE", "ES",
             "FI", "FR", "GR", "HU", "IE", "IT", "LT", "LU", "LV", "MT",
             "NL", "PL", "PT", "RO", "SE", "SK", "SI", "IS", "LI", "NO",
-            "GB", "T1",
+            "GB", "T1", "AU",
         ],
     ],
     'bluesky' => [
