@@ -30,7 +30,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
             </li>
             <li class="flex flex-row gap-2 border-b mb-2">
                 <div class="w-6 h-6">
-                    <img src="/images/MICROPEN-logo.png" alt="">
+                    <img src="{{ Vite::asset('resources/images/MICROPEN-logo.png') }}" alt="">
                 </div>
                 <a href="{{route('micropen.index')}}">MICROPEN</a>
             </li>
@@ -58,7 +58,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     <div>
                         @if($document->data_source === 'misskey')
                             <div class="w-6 h-6">
-                                <img src="/images/MICROPEN-logo.png" alt="">
+                                <img src="{{ Vite::asset('resources/images/MICROPEN-logo.png') }}" alt="">
                             </div>
                         @elseif($document->data_source === 'bluesky')
                             <div class="w-6 h-6 stroke-[#0285FF] fill-[#0285FF]">
