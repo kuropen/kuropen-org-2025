@@ -23,9 +23,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         MICROPENログインページ
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
@@ -35,9 +33,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         Kuropenのアカウントへのアクセス・フォロー
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
@@ -47,9 +43,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         利用規約
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
@@ -59,9 +53,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         ブロックしているサーバー
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
@@ -77,9 +69,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     </section>
     <section>
         <a href="/" class="border rounded-lg p-2 flex flex-row gap-2 w-fit">
-            <span class="material-symbols-outlined">
-                chevron_left
-            </span>
+            <span class="iconify heroicons--chevron-left w-6 h-6"></span>
             <div>
                 トップページに戻る
             </div>

@@ -1,7 +1,7 @@
 ---
 title: Legal Notice
 category: legal
-lastUpdated: 2024/10/20
+lastUpdated: 2024/12/05
 ---
 
 # Kuropen運営サイトのプライバシーポリシー
@@ -43,15 +43,12 @@ lastUpdated: 2024/10/20
 - 送信先: Google (アメリカ合衆国 Google LLC)
     - 送信される内容: 利用者のIPアドレス、ブラウザ・端末の種別、閲覧したページのURL
     - 送信目的: 
-      - Webフォントのダウンロード
       - 問い合わせフォームにおいて、セキュリティ対策のためのデータ収集
     - 送信先の提供情報等: [プライバシーポリシー](https://policies.google.com/privacy?hl=ja&fg=1)
 - 送信先: Bunny (スロベニア BunnyWay d.o.o.)
     - 送信される内容: 利用者のIPアドレス、ブラウザ・端末の種別、閲覧したページのURL
     - 送信目的: Webフォントのダウンロード
     - 送信先の提供情報等: [プライバシーポリシー](https://bunny.net/privacy/)
-
-※Webフォントのダウンロードにおいては、ページにより Google と Bunny のいずれかが使われます。
 
 ## **Kuropen.org および akabe.co ドメイン配下のページについて**
 
@@ -73,9 +70,7 @@ lastUpdated: 2024/10/20
 
 ### **Webフォントに関する開示事項**
 
-当サイトのWebフォントはGoogle Fontsを使用しています。 お使いのブラウザからフォントのダウンロードのため、Google Fontsのサーバーにアクセスする場合があります。
-
-なお、一部のコンテンツでは Google Fonts ではなく Bunny Fonts が利用されている場合があります。
+当サイトのWebフォントはBunny Fontsを使用しています。 お使いのブラウザからフォントのダウンロードのため、Bunny Fontsのサーバーにアクセスする場合があります。
 
 ### **Cookieに関する開示事項**
 
@@ -110,4 +105,5 @@ lastUpdated: 2024/10/20
     - 上記に列挙するユーザーにリモートユーザーが含まれている場合は、その属するリモートサービスの全ユーザー
 - MICROPEN は非営利で運用されており、広告は掲載しておりません。
 - MICROPEN で利用する Cookie および ローカルストレージは、全て Misskey システムの動作に必須のものとなります。拒否した場合は MICROPEN を利用できません。
+- MICROPEN へのユーザー登録など一部の操作において、不正利用対策のため、GoogleのreCAPTCHA v3を導入しています。reCAPTCHA v3の利用にあたっては、[**Googleのプライバシーポリシー**](https://policies.google.com/privacy?hl=ja&fg=1)をご確認ください。
 - MICROPENのサーバーは、日本国内に所在します。

@@ -9,9 +9,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
 @section('content')
     <section class="my-4 border border-indigo-700 rounded-xl p-4">
         <div class="flex flex-row gap-2 justify-center">
-            <span class="material-symbols-outlined">
-                person_search
-            </span>
+            <span class="iconify heroicons--user-circle w-8 h-8"></span>
             <h2 class="text-xl mb-2">Find Me On...</h2>
         </div>
         <nav class="grid grid-cols-4 gap-4">
@@ -71,9 +69,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     </section>
     <section class="my-4 border border-indigo-700 rounded-xl p-4">
         <div class="flex flex-row gap-2 justify-center">
-            <span class="material-symbols-outlined">
-                construction
-            </span>
+            <span class="iconify heroicons--code-bracket-square w-8 h-8"></span>
             <h2 class="text-xl mb-2">Works</h2>
         </div>
         <ul>
@@ -83,9 +79,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         MICROPEN (Misskey Server)
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
@@ -95,9 +89,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         Gain the Power from Akabeko
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>

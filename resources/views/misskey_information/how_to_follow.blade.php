@@ -69,17 +69,13 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     </section>
     <section class="flex flex-col md:flex-row gap-4">
         <a href="/" class="border rounded-lg p-2 flex flex-row gap-2 w-fit">
-            <span class="material-symbols-outlined">
-                chevron_left
-            </span>
+            <span class="iconify heroicons--chevron-left w-6 h-6"></span>
             <div>
                 トップページに戻る
             </div>
         </a>
         <a href="{{route('micropen.index')}}" class="border rounded-lg p-2 flex flex-row gap-2 w-fit">
-            <span class="material-symbols-outlined">
-                chevron_left
-            </span>
+            <span class="iconify heroicons--chevron-left w-6 h-6"></span>
             <div>
                 MICROPEN情報に戻る
             </div>

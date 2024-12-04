@@ -13,9 +13,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         @if($deleteStatus)
             <div class="flex flex-row gap-2 bg-green-300 p-4 rounded-lg border">
                 <div class="shrink-0">
-                <span class="material-symbols-outlined">
-                    check_circle
-                </span>
+                    <span class="iconify heroicons--check-circle w-12 h-12"></span>
                 </div>
                 <div class="grid grid-cols-1 gap-1">
                     <p>削除に成功しました。</p>

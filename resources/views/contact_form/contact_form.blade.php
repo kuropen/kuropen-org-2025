@@ -14,9 +14,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     <h2 class="text-2xl mb-4">Contact - お問い合わせフォーム</h2>
     <div class="my-4 flex flex-row gap-2 p-4 bg-yellow-200 rounded-lg border">
         <div class="shrink-0">
-            <span class="material-symbols-outlined">
-                info
-            </span>
+            <span class="iconify heroicons--information-circle w-12 h-12"></span>
         </div>
         <div class="grid grid-cols-1 gap-1">
             <p>お問い合わせ内容によっては、返信にお時間をいただく場合がございます。</p>
@@ -31,9 +29,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 class="flex mb-4 flex-row gap-2 p-4 bg-yellow-200 rounded-lg border"
                 x-show="$refs.errorList.childElementCount > 0"
             >
-                <span class="material-symbols-outlined">
-                    problem
-                </span>
+                <span class="iconify heroicons--exclamation-circle w-12 h-12"></span>
                 <div>
                     <p>入力内容に不備があります。</p>
                     <ul x-ref="errorList">
@@ -101,9 +97,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
 </section>
 <section>
     <a href="/" class="border rounded-lg p-2 flex flex-row gap-2 w-fit">
-            <span class="material-symbols-outlined">
-                chevron_left
-            </span>
+        <span class="iconify heroicons--chevron-left w-6 h-6"></span>
         <div>
             トップページに戻る
         </div>
