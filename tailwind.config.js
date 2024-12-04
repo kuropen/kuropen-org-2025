@@ -2,6 +2,8 @@
 //
 // SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
 
+const { addIconSelectors } = require('@iconify/tailwind');
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -14,6 +16,7 @@ export default {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
+    addIconSelectors(['heroicons']),
   ],
 }
 

@@ -21,9 +21,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         問い合わせ内容確認
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
@@ -33,9 +31,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         Planet Penguinone コンテンツ削除
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
@@ -45,9 +41,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         ログアウト
                     </div>
                     <div>
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
                     </div>
                 </a>
             </li>
