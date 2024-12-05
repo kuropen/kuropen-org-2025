@@ -29,7 +29,7 @@ class BlueskySource implements DocumentSource
                 // repost
                 $text = "RP @{$postItem['author']['handle']}: {$postItem['record']['text']}";
                 $publishedAt = $item['reason']['indexedAt'];
-            } elseif (isset($item['reply'])) {
+            } elseif (isset($item['reply']['parent']['author'])) {
                 $text = "@{$item['reply']['parent']['author']['handle']} {$postItem['record']['text']}";
             } else {
                 $text = $postItem['record']['text'];
