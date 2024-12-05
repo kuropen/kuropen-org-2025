@@ -13,7 +13,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="me" href="https://mi.kuropen.org/@kuropen">
     <link rel="me" href="https://fedibird.com/@kuropen">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.bunny.net">
     <meta name="og:site_name" content="{{config('app.name')}}">
     <meta name="og:title" content="@yield('page_title')@yield('title_separator'){{config('app.name')}}">
     <meta name="og:description" content="{{config('const.site_description')}}">

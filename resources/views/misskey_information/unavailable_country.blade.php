@@ -9,7 +9,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
 @section('content')
     <section>
         <h2 class="sr-only">MICROPENが利用できない地域</h2>
-        <div class="flex flex-row gap-2 bg-red-300 p-4 rounded-lg border">
+        <div class="flex flex-row gap-2 bg-red-200 p-4 rounded-lg border">
             <div class="shrink-0">
                 <span class="iconify heroicons--no-symbol w-12 h-12"></span>
             </div>
@@ -20,7 +20,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 また、Tor等の匿名性の高いネットワークからの利用も禁止しています。
             </p>
         </div>
-        <div class="my-4 border border-indigo-700 rounded-xl p-4">
+        <div class="my-4 border border-light-blue-1000 rounded-xl p-4">
             Kuropenのアカウントにアクセスしたい方は、あなたが所在する地域で利用できる
             ActivityPubをサポートするSNS（Mastodon・Misskey・Pleroma等）のサーバーにご登録いただき、
             お使いのサーバーで <strong>@kuropen@mi.kuropen.org</strong> を検索してください。

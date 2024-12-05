@@ -7,7 +7,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
 @extends('layouts.subpage')
 @section('page_title', 'MICROPEN information')
 @section('content')
-    <section class="my-4 border border-indigo-700 rounded-xl p-4">
+    <section class="my-4 border border-light-blue-1000 rounded-xl p-4">
         <div class="flex flex-row gap-2 justify-center">
             <img src="{{ Vite::asset('resources/images/MICROPEN-logo.png') }}" alt="" class="w-8 h-8">
             <h2 class="text-xl mb-2">MICROPEN Information</h2>

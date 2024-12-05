@@ -69,7 +69,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 </div>
                 <div class="my-4 flex flex-col gap-2 p-4 bg-yellow-200 rounded-lg border" x-show="selectedTypeIsInvitation">
                     <p>
-                        お問い合わせ内容が「招待コード発行依頼」の場合、<a href="{{route('micropen.terms')}}" class="text-blue-800" target="_blank">MICROPEN利用規約</a>への同意が必要となります。<br>
+                        お問い合わせ内容が「招待コード発行依頼」の場合、<a href="{{route('micropen.terms')}}" class="text-blue-1000" target="_blank">MICROPEN利用規約</a>への同意が必要となります。<br>
                         また、お問い合わせ内容に、面識のある当サーバーユーザーの名前や、そのユーザーとの関係性など、招待コードを発行すべきかどうか判断するための情報を含めてください。<br>
                         これがない場合、請求を却下させていただきます。また、却下された場合の返信はいたしません。
                     </p>
@@ -85,7 +85,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     <button
                         type="submit"
                         class="border rounded-lg p-2 text-white w-full"
-                        :class="isSendButtonDisabled ? 'bg-gray-500' : 'bg-blue-500'"
+                        :class="isSendButtonDisabled ? 'bg-gray-420' : 'bg-blue-900'"
                         :disabled="isSendButtonDisabled"
                     >
                         送信

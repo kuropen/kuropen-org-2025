@@ -7,18 +7,18 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
 @extends('layouts.subpage')
 @section('page_title', 'How to Follow')
 @section('content')
-    <section class="flex flex-col gap-4 my-4 border border-indigo-700 rounded-xl p-4">
+    <section class="flex flex-col gap-4 my-4 border border-light-blue-1000 rounded-xl p-4">
         <h2 class="text-xl mb-2">KuropenのMisskeyアカウントにアクセスする</h2>
         <p>
             Kuropenのアカウントは自営のMisskeyサーバーであるMICROPENにあります。<br>
             MICROPENの画面で直接投稿を見る方は以下のボタンを押してください。
         </p>
-        <a href="https://mi.kuropen.org/@kuropen" class="block bg-blue-800 text-white text-center rounded-xl p-4">
+        <a href="https://mi.kuropen.org/@kuropen" class="block bg-blue-900 text-white text-center rounded-xl p-4">
             フォローせずにKuropenの投稿を表示する
         </a>
     </section>
     <section
-        class="flex flex-col gap-4 my-4 border border-indigo-700 rounded-xl p-4"
+        class="flex flex-col gap-4 my-4 border border-light-blue-1000 rounded-xl p-4"
         x-data="{activeTab: '', init() {this.activeTab = 'Misskey'}}"
     >
         <h2 class="text-xl mb-2">KuropenのMisskeyアカウントをフォローするには</h2>
@@ -28,18 +28,20 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         <div class="border rounded-xl p-4 flex flex-col gap-4">
             <ul class="grid grid-cols-2 gap-3" role="tablist">
                 <li role="tab"
-                    class="border-b-4 text-center"
-                    :class="{'border-green-400': activeTab === 'Misskey'}"
+                    class="border-b-4 flex flex-row justify-center gap-2 pb-2"
+                    :class="{'border-blue-900': activeTab === 'Misskey'}"
                     :aria-selected="activeTab === 'Misskey'"
                     x-on:click="activeTab = 'Misskey'">
-                    Misskey
+                    <div class="iconify-color skill-icons--misskey-light w-6 h-6"></div>
+                    <div>Misskey</div>
                 </li>
                 <li role="tab"
-                    class="border-b-4 text-center"
-                    :class="{'border-green-400': activeTab === 'Mastodon'}"
+                    class="border-b-4 flex flex-row justify-center gap-2 pb-2"
+                    :class="{'border-blue-900': activeTab === 'Mastodon'}"
                     :aria-selected="activeTab === 'Mastodon'"
                     x-on:click="activeTab = 'Mastodon'">
-                    Mastodon
+                    <div class="iconify-color skill-icons--mastodon-light w-6 h-6"></div>
+                    <div>Mastodon</div>
                 </li>
             </ul>
             <div x-show="activeTab === 'Misskey'">

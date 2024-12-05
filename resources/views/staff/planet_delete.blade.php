@@ -11,7 +11,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         <h2 class="text-2xl mb-4 border-b border-b-gray-300">管理画面</h2>
         <h3 class="text-xl mb-2">コンテンツ削除</h3>
         @if($deleteStatus)
-            <div class="flex flex-row gap-2 bg-green-300 p-4 rounded-lg border mb-4">
+            <div class="flex flex-row gap-2 bg-green-200 p-4 rounded-lg border mb-4">
                 <div class="shrink-0">
                     <span class="iconify heroicons--check-circle w-12 h-12"></span>
                 </div>

@@ -9,7 +9,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
 @section('content')
     <section>
         <h2 class="sr-only">MICROPENの一部機能が制限されているネットワーク</h2>
-        <div class="flex flex-row gap-2 bg-red-300 p-4 rounded-lg border">
+        <div class="flex flex-row gap-2 bg-red-200 p-4 rounded-lg border">
             <div class="shrink-0">
                 <span class="iconify heroicons--no-symbol w-12 h-12"></span>
             </div>
