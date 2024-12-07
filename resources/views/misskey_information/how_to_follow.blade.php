@@ -28,7 +28,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         <div class="border rounded-xl p-4 flex flex-col gap-4">
             <ul class="grid grid-cols-2 gap-3" role="tablist">
                 <li role="tab"
-                    class="border-b-4 flex flex-row justify-center gap-2 pb-2"
+                    class="border-b-4 flex flex-row justify-center gap-2 pb-2 cursor-pointer"
                     :class="{'border-blue-900': activeTab === 'Misskey'}"
                     :aria-selected="activeTab === 'Misskey'"
                     x-on:click="activeTab = 'Misskey'">
@@ -36,7 +36,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     <div>Misskey</div>
                 </li>
                 <li role="tab"
-                    class="border-b-4 flex flex-row justify-center gap-2 pb-2"
+                    class="border-b-4 flex flex-row justify-center gap-2 pb-2 cursor-pointer"
                     :class="{'border-blue-900': activeTab === 'Mastodon'}"
                     :aria-selected="activeTab === 'Mastodon'"
                     x-on:click="activeTab = 'Mastodon'">
