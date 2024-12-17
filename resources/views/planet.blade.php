@@ -11,28 +11,28 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         <div class="mb-4">
             <h2 class="text-2xl">Planet Penguinone</h2>
             <p>Kuropenのソーシャルメディアやブログなどの更新タイムラインです。</p>
-            <p>Inspired by <a href="https://www.eniehack.net/~eniehack/planet/" class="text-blue-1000">planet eniehack</a></p>
+            <p>Inspired by <a href="https://www.eniehack.net/~eniehack/planet/" target="_blank" class="link-text external-link">planet eniehack</a></p>
         </div>
         <hr>
         <h3 class="text-xl my-4">Datasources</h3>
         <ul>
             <li class="flex flex-row gap-2 border-b mb-2">
                 <span class="iconify heroicons--rss w-6 h-6"></span>
-                <a href="https://sizu.me/kuropen">しずかなインターネット</a>
+                <a href="https://sizu.me/kuropen" target="_blank" class="link-text external-link">しずかなインターネット</a>
             </li>
             <li class="flex flex-row gap-2 border-b mb-2">
                 <div class="iconify simple-icons--notion w-6 h-6"></div>
-                <a href="https://penguinone.notion.site/cc3b0e9ccab34bbf95c2bec97dc1e673">雑記帳過去記事</a>
+                <a href="https://penguinone.notion.site/cc3b0e9ccab34bbf95c2bec97dc1e673" target="_blank" class="link-text external-link">雑記帳過去記事</a>
             </li>
             <li class="flex flex-row gap-2 border-b mb-2">
                 <div class="w-6 h-6">
                     <img src="{{ Vite::asset('resources/images/MICROPEN-logo.png') }}" alt="">
                 </div>
-                <a href="{{route('micropen.index')}}">MICROPEN</a>
+                <a href="{{route('micropen.index')}}" class="link-text">MICROPEN</a>
             </li>
             <li class="flex flex-row gap-2 border-b mb-2">
                 <div class="iconify simple-icons--bluesky w-6 h-6 text-[#0285FF]"></div>
-                <a href="https://bsky.app/profile/kuropen.org">Bluesky</a>
+                <a href="https://bsky.app/profile/kuropen.org" target="_blank" class="link-text external-link">Bluesky</a>
             </li>
         </ul>
         <p class="my-4">
@@ -68,7 +68,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     </div>
                     <div class="flex-grow break-all">
                         {{ $document->title }}
-                        (<a href="{{ $document->url }}" target="_blank" class="text-blue-1000">{{ \Carbon\Carbon::make($document->published_at)->timezone('Asia/Tokyo')->format('H:i') }}</a>)
+                        (<a href="{{ $document->url }}" target="_blank" class="link-text external-link">{{ \Carbon\Carbon::make($document->published_at)->timezone('Asia/Tokyo')->format('H:i') }}</a>)
                     </div>
                 </div>
             </div>
