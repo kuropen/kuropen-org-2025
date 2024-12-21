@@ -2,19 +2,19 @@
 #
 # SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
 
-FROM node:20 AS vite-builder
+FROM node:20.18.1-alpine3.20 AS vite-builder
 WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run build
 
-FROM caddy:2.8.4-builder AS caddy-builder
+FROM caddy:2.8.4-builder-alpine AS caddy-builder
 
 RUN xcaddy build --with github.com/baldinof/caddy-supervisor
 
-FROM php:8.3-fpm
+FROM php:8.3-fpm-alpine3.20
 
-RUN apt update && apt install -y libpq-dev libxml2-dev libzip-dev busybox-static
+RUN apk --no-cache add postgresql16-dev libxml2-dev libzip-dev
 RUN docker-php-ext-install pgsql pdo_pgsql xml zip
 RUN docker-php-ext-enable opcache
 
