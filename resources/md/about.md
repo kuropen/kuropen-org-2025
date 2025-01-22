@@ -20,6 +20,12 @@ title: About
 ### 著作権について
 このサイトのコンテンツは、特に記載がない限り、[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja)ライセンスで提供されています。
 
+なお、このサイトのコンテンツ作成においては以下の生成AIが利用されている場合があります。
+
+- GitHub Copilot
+- Microsoft Copilot (Microsoft Designerによる)
+- Adobe Sensei (Adobe Photoshopによる)
+
 ### ソースコード
 このサイトのソースコードは、[GitHub](https://github.com/kuropen/kuropen-org-2025)で公開されています。
 
