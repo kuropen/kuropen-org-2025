@@ -5,7 +5,8 @@
 type CookiePolicyTool = {
     show: boolean,
     confirmPolicy: () => Promise<void>,
-    init: () => void
+    init: () => void,
+    setPageMargin: (height: number) => void,
 }
 
 export default function() {
@@ -27,6 +28,12 @@ export default function() {
         },
         init() {
             this.show = true;
+        },
+        setPageMargin(height: number) {
+            console.log('CookiePolicyTool.setPageMargin', height);
+
+            // ドキュメント全体の margin-bottom に、Cookie Policy の高さを追加する
+            document.body.style.marginBottom = `${height}px`;
         }
     } satisfies CookiePolicyTool;
 }
