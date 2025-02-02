@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: LicenseRef-KUROPEN-ORG-PUBLIC-CODE
 
-FROM node:20.18.1-alpine3.20 AS vite-builder
+FROM node:22.13.1-alpine3.20 AS vite-builder
 WORKDIR /app
 COPY . .
 RUN npm install
