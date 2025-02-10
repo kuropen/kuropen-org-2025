@@ -25,12 +25,13 @@ export default function() {
                 body: JSON.stringify({time: Date.now()})
             })
             this.show = false;
+            this.setPageMargin(0);
         },
         init() {
             this.show = true;
         },
         setPageMargin(height: number) {
-            console.log('CookiePolicyTool.setPageMargin', height);
+            console.debug('CookiePolicyTool.setPageMargin', height);
 
             // ドキュメント全体の margin-bottom に、Cookie Policy の高さを追加する
             document.body.style.marginBottom = `${height}px`;
