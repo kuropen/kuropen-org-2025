@@ -10,6 +10,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     x-show="show"
     x-ref="policySection"
     x-effect="setPageMargin($refs.policySection.getBoundingClientRect().height)"
+    x-on:resize.window="setPageMargin($refs.policySection.getBoundingClientRect().height)"
 >
     <div class="flex flex-col gap-2 md:flex-row rounded-lg m-2 p-2 {{$class}}">
         <div class="md:flex-grow flex flex-col gap-1">
