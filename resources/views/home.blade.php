@@ -50,14 +50,10 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 </h3>
             </button>
             <div x-show="open">
-                <nav class="grid grid-cols-3 gap-2">
+                <nav class="grid grid-cols-2 gap-2">
                     <a href="https://www.instagram.com/kuropen" class="border border-gray-800 rounded-lg p-2 flex flex-row justify-center">
                         <div class="iconify-color skill-icons--instagram w-8 h-8 md:w-12 md:h-12"></div>
                         <div class="sr-only">Instagram</div>
-                    </a>
-                    <a href="https://x.com/kuropen_aizu" class="border border-gray-800 rounded-lg p-2 flex flex-row justify-center">
-                        <div class="iconify simple-icons--x w-8 h-8 md:w-12 md:h-12"></div>
-                        <div class="sr-only">X</div>
                     </a>
                     <a href="https://github.com/kuropen" class="border border-gray-800 rounded-lg p-2 flex flex-row justify-center">
                         <div class="iconify simple-icons--github w-8 h-8 md:w-12 md:h-12"></div>
@@ -65,7 +61,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     </a>
                 </nav>
                 <p class="mt-4 text-sm">
-                    ※現在、Xへの投稿はほとんど行っていません。新規のフォローやご連絡はなるべくMisskeyかBlueskyへお願いします。
+                    ※Xアカウントは運用停止中です。ご連絡はほかのSNSでお願いします。
                 </p>
             </div>
         </div>
