@@ -21,6 +21,15 @@ class PlanetController extends Controller
             ->where('published_at', '>=', now()->subWeek())
             ->limit(100)
             ->get();
-        return view('planet', compact('documents', 'lastRunLog'));
+
+        // 次に到来する30分または00分の時刻を取得し、Expiresヘッダとcache-controlを設定
+        $delta = 30 - (now()->minute % 30);
+        $deltaInSec = $delta * 60;
+        $expires = now()->addMinutes($delta)->setSeconds(0);
+
+        return response()
+            ->view('planet', compact('documents', 'lastRunLog'))
+            ->header('Expires', $expires->toRfc7231String())
+            ->header('Cache-Control', 'public, max-age=' . $deltaInSec);
     }
 }
