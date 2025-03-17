@@ -64,6 +64,8 @@ class MarkdownFileController extends Controller
         $converter->getEnvironment()->addExtension($this->extension);
         $content = $converter->convert($document->getContent());
 
-        return view('markdown', compact('title', 'content', 'backTo'));
+        return response()
+            ->view('markdown', compact('title', 'content', 'backTo'))
+            ->header('Cache-Control', 'public, max-age=600, stale-while-revalidate=3600');
     }
 }
