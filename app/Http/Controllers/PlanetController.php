@@ -23,7 +23,8 @@ class PlanetController extends Controller
             ->get();
 
         // 次に到来する30分または00分の時刻を取得し、Expiresヘッダとcache-controlを設定
-        $delta = 30 - (now()->minute % 30);
+        // ただし #22 対策で2分ずらす
+        $delta = 30 - (now()->minute % 30) + 2;
         $deltaInSec = $delta * 60;
         $expires = now()->addMinutes($delta)->setSeconds(0);
 
