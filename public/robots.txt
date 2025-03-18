@@ -1,3 +1,3 @@
 User-agent: *
 Disallow: /staff-zone/
-Disallow: /misskey/blocked
+Disallow: /micropen/blocked
