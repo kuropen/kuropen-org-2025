@@ -9,15 +9,17 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
     <main class="max-w-[896px] mx-auto flex flex-col gap-12 mt-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <header class="mx-auto my-4 h-12 gap-3">
-                <a href="/">
-                    <div class="flex flex-row gap-3">
-                        <img src="{{ Vite::asset('resources/images/penguin.png') }}" alt="" class="w-10 h-10 rounded-full">
-                        <h1 class="text-2xl inter">{{config('app.name')}}</h1>
-                    </div>
-                </a>
+                <div class="flex flex-row gap-3">
+                    <img src="{{ Vite::asset('resources/images/penguin.png') }}" alt="" class="w-10 h-10 rounded-full">
+                    <h1 class="text-2xl inter">{{config('app.name')}}</h1>
+                </div>
             </header>
             <aside class="md:order-first md:row-span-2">
-                <img src="{{ Vite::asset('resources/images/hero_20250318.jpg') }}" class="rounded" alt="">
+                <picture>
+                    <source
+                        srcset="{{ Vite::asset('resources/images/hero_768_20250318.jpg') }}, {{ Vite::asset('resources/images/hero_20250318.jpg') }} 3x">
+                    <img src="{{ Vite::asset('resources/images/hero_768_20250318.jpg') }}" class="rounded" alt="">
+                </picture>
             </aside>
             <nav>
                 <ul class="flex flex-col gap-2">
