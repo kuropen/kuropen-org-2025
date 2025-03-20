@@ -64,8 +64,7 @@ class SendInquiryService
      */
     public function shouldNotifyViaMisskey(): bool
     {
-        return (app()->isLocal() || Cache::get(config('const.misskey.availability_key'))) &&
-            MisskeyBatchToken::where('for_user', config('const.misskey.notification_account'))
+        return MisskeyBatchToken::where('for_user', config('const.misskey.notification_account'))
                 ->where('is_admin', false)
                 ->exists();
     }

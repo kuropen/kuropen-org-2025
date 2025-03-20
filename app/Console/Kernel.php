@@ -18,10 +18,9 @@ class Kernel extends ConsoleKernel
     {
         // WARNING: Railwayの制限のため、スケジュールは5分刻みとすること
 
-        $schedule->command('misskey:health-check')->everyFiveMinutes();
         $schedule->command('misskey:check-blocked')->hourly();
-        $schedule->command('document:load')->everyThirtyMinutes();
-//        $schedule->command('document:check')->timezone('Asia/Tokyo')->dailyAt('2:30');
+        // run separately
+//        $schedule->command('document:load')->everyThirtyMinutes();
         $schedule->command('inquiry:recipient-register')->daily();
     }
 
