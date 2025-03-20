@@ -23,9 +23,6 @@ a:focus {
 a.link-text, .prose a {
     @apply text-blue-1000;
 }
-a.link-text:visited, .prose a:visited {
-    @apply text-magenta-700;
-}
 a.link-text:hover, .prose a:hover {
     @apply underline;
 }

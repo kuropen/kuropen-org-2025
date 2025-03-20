@@ -17,9 +17,11 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
             <span class="iconify heroicons--information-circle w-12 h-12"></span>
         </div>
         <div class="grid grid-cols-1 gap-1">
+            <p class="font-bold">以下の事項に同意の上で送信してください。</p>
             <p>お問い合わせ内容によっては、返信にお時間をいただく場合がございます。</p>
             <p>このフォームは問い合わせを行った方に確認メールを送信いたしません。</p>
             <p>MICROPENの不正利用の通報については、その対応を確約するものではありません。</p>
+            <p>このフォームに入力された個人情報は日本国外のサーバーに保管されます。詳しくは<a href="{{route('legal')}}" class="link-text">プライバシーポリシー</a>をご覧ください。</p>
         </div>
     </div>
     <div class="my-4">

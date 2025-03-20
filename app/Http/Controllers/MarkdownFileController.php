@@ -19,6 +19,7 @@ use Webuni\FrontMatter\Markdown\FrontMatterLeagueCommonMarkExtension;
  * @method \Illuminate\View\View micropen_terms()
  * @method \Illuminate\View\View social_policy()
  * @method \Illuminate\View\View about()
+ * @method \Illuminate\View\View works()
  */
 class MarkdownFileController extends Controller
 {
