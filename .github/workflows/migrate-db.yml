@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - stg
     paths:
       - .github/workflows/migrate-db.yml
       - database/migrations/*
@@ -26,7 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]') ||
+      (github.ref == 'refs/heads/stg')
     steps:
       - uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request_target' }}
