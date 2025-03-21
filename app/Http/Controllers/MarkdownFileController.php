@@ -20,6 +20,7 @@ use Webuni\FrontMatter\Markdown\FrontMatterLeagueCommonMarkExtension;
  * @method \Illuminate\View\View social_policy()
  * @method \Illuminate\View\View about()
  * @method \Illuminate\View\View works()
+ * @method \Illuminate\View\View fediverse_spam()
  */
 class MarkdownFileController extends Controller
 {

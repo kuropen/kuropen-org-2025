@@ -38,6 +38,9 @@ Route::get('/works', [\App\Http\Controllers\MarkdownFileController::class, 'work
 
 Route::get('/.well-known/nostr.json', [\App\Http\Controllers\NostrController::class, 'nip05']);
 
+Route::get('/statements/202402-fediverse-spam', [\App\Http\Controllers\MarkdownFileController::class, 'fediverse_spam'])
+    ->name('statement_fediverse_spam');
+
 Route::prefix('/contact')
     ->middleware(\App\Http\Middleware\TorDetectionMiddleware::class)
     ->group(function () {

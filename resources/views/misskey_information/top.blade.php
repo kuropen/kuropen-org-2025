@@ -57,6 +57,16 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     </div>
                 </a>
             </li>
+            <li class="border-b mb-2">
+                <a href="{{route('statement_fediverse_spam')}}" class="flex flex-row align-middle">
+                    <div class="flex-grow">
+                        2024年2月のFediverseスパム攻撃へのMICROPENの対応
+                    </div>
+                    <div>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
+                    </div>
+                </a>
+            </li>
         </ul>
         <nav class="grid grid-cols-2 gap-2">
             <a href="https://status.kuropen.org/" class="border rounded-lg p-2">
