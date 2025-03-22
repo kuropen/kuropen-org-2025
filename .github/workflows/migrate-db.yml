@@ -34,33 +34,19 @@ jobs:
         if: ${{ github.event_name == 'pull_request_target' }}
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
       - name: Setup PHP extension
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           extensions: mbstring, pgsql, readline, xml
           tools: composer
-      - name: Setting target service
-        # -e option is the target environment name:
-        # production for main branch, "kuropen-org-2025-pr-<PR_NUMBER>" for PR
-        run: railway link -t personal -p ${{ secrets.RAILWAY_PROJECT_ID }} -e ${{ (github.event_name != 'pull_request_target' && github.ref == 'refs/heads/main') && 'staging' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }} -s web
-        env:
-          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
       - name: Fetch environment variables on Railway
-        run: railway variables --json | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
-        env:
-          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+        run: |
+          curl -H 'Content-Type: application/json' -d '{"apiToken":"${{ secrets.RAILWAY_API_TOKEN }}", "environmentName":"${{ (github.event_name != 'pull_request_target') && 'staging' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }}", "serviceName": "web"}' ${{ secrets.WF_PROXY_URL }} | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
       - name: Checking Public Database URL on Railway
         id: db_check
-        run: railway variables -s Postgres --json | jq -r 'to_entries | .[] | select(.key == "DATABASE_PUBLIC_URL") | ["DATABASE_URL", (.value | @sh)] | join("=")' >> "$GITHUB_OUTPUT"
-        env:
-          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+        run: |
+          curl -H 'Content-Type: application/json' -d '{"apiToken":"${{ secrets.RAILWAY_API_TOKEN }}", "environmentName":"${{ (github.event_name != 'pull_request_target') && 'staging' || format('kuropen-org-2025-pr-{0}', github.event.pull_request.number) }}", "serviceName": "Postgres"}' ${{ secrets.WF_PROXY_URL }} | jq -r 'to_entries | .[] | select(.key == "DATABASE_PUBLIC_URL") | ["DATABASE_URL", (.value | @sh)] | join("=")' >> "$GITHUB_OUTPUT"
       - name: Installing PHP dependencies
         run: composer install
       - name: Wait 1 minute for the database to be ready
@@ -82,33 +68,19 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request_target'
     steps:
         - uses: actions/checkout@v4
-        - name: Use Node.js 20
-          uses: actions/setup-node@v4
-          with:
-            node-version: 20
-        - name: Install Railway CLI
-          run: npm install -g @railway/cli
         - name: Setup PHP extension
           uses: shivammathur/setup-php@v2
           with:
             php-version: '8.3'
             extensions: mbstring, pgsql, readline, xml
             tools: composer
-        - name: Setting target service
-          # -e option is the target environment name:
-          # production for main branch, "kuropen-org-2025-pr-<PR_NUMBER>" for PR
-          run: railway link -p ${{ secrets.RAILWAY_PROJECT_ID }} -e production -s web
-          env:
-            RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         - name: Fetch environment variables on Railway
-          run: railway variables --json | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
-          env:
-            RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          run:  |
+            curl -H 'Content-Type: application/json' -d '{"apiToken":"${{ secrets.RAILWAY_API_TOKEN }}", "environmentName":"production", "serviceName": "web"}' ${{ secrets.WF_PROXY_URL }} | jq -r 'to_entries | .[] | select(.key != "DATABASE_URL") | [.key, (.value | @sh)] | join("=")' > .env
         - name: Checking Public Database URL on Railway
           id: db_check
-          run: railway variables -s Postgres --json | jq -r 'to_entries | .[] | select(.key == "DATABASE_PUBLIC_URL") | ["DATABASE_URL", (.value | @sh)] | join("=")' >> "$GITHUB_OUTPUT"
-          env:
-            RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          run: |
+            curl -H 'Content-Type: application/json' -d '{"apiToken":"${{ secrets.RAILWAY_API_TOKEN }}", "environmentName":"production", "serviceName": "Postgres"}' ${{ secrets.WF_PROXY_URL }} | jq -r 'to_entries | .[] | select(.key == "DATABASE_PUBLIC_URL") | ["DATABASE_URL", (.value | @sh)] | join("=")' >> "$GITHUB_OUTPUT"
         - name: Installing PHP dependencies
           run: composer install
         - name: Wait 1 minute for the database to be ready
