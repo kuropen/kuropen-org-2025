@@ -37,7 +37,7 @@ jobs:
       - name: Setup PHP extension
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.4.5'
           extensions: mbstring, pgsql, readline, xml
           tools: composer
       - name: Fetch environment variables on Railway
@@ -67,7 +67,7 @@ jobs:
         - name: Setup PHP extension
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '8.3'
+            php-version: '8.4.5'
             extensions: mbstring, pgsql, readline, xml
             tools: composer
         - name: Fetch environment variables on Railway
