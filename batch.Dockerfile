@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/php:8.3-cli-alpine3.20
+FROM public.ecr.aws/docker/library/php:8.4.5-cli-alpine3.20
 
 RUN apk --no-cache add postgresql16-dev libxml2-dev libzip-dev
 RUN docker-php-ext-install pgsql pdo_pgsql xml zip
