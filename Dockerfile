@@ -12,13 +12,13 @@ FROM public.ecr.aws/docker/library/caddy:2.8.4-builder-alpine AS caddy-builder
 
 RUN xcaddy build --with github.com/baldinof/caddy-supervisor
 
-FROM public.ecr.aws/docker/library/php:8.3-fpm-alpine3.20
+FROM public.ecr.aws/docker/library/php:8.4.5-fpm-alpine3.20
 
 RUN apk --no-cache add postgresql16-dev libxml2-dev libzip-dev
 RUN docker-php-ext-install pgsql pdo_pgsql xml zip
 RUN docker-php-ext-enable opcache
 
-COPY --from=public.ecr.aws/docker/library/composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=public.ecr.aws/docker/library/composer:2.8.6 /usr/bin/composer /usr/bin/composer
 
 COPY docker-resource/Caddyfile /etc/caddy/Caddyfile
 COPY --from=caddy-builder /usr/bin/caddy /usr/bin/caddy
