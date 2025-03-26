@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2025 Kuropen
+# SPDX-License-Identifier: BSL-1.0
+
 CHECK_RECORD_FILE=$(mktemp)
 
 cd $(dirname $0)
