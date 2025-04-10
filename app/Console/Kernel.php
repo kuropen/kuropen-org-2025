@@ -16,11 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // WARNING: Railwayの制限のため、スケジュールは5分刻みとすること
-
         $schedule->command('misskey:check-blocked')->hourly();
-        // run separately
-//        $schedule->command('document:load')->everyThirtyMinutes();
+        $schedule->command('document:load')->everyThirtyMinutes();
         $schedule->command('inquiry:recipient-register')->daily();
     }
 
