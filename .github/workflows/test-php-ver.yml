@@ -10,14 +10,12 @@ on:
       - main
     paths:
       - .github/workflows/test-php-ver.yml
-      - .github/workflows/migrate-db.yml
       - Dockerfile
       - batch.Dockerfile
       - php-ver-check.sh
   pull_request:
     paths:
       - .github/workflows/test-php-ver.yml
-      - .github/workflows/migrate-db.yml
       - Dockerfile
       - batch.Dockerfile
       - php-ver-check.sh

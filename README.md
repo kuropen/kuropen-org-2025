@@ -31,22 +31,5 @@ The content is in Japanese.
 - Logging:
     - Better Stack
 
-## Production Environment
-```mermaid
-    graph TD
-        A(Client) <-- HTTPS --> B(Cloudflare)
-        B <-- HTTPS --> I
-        
-        subgraph Railway
-            I(Railway Gateway) <--> C
-            F(Railway Scheduler) -- Invoke every 5 minutes --> G(PHP Container for batch)
-            C(Web Container) <--> D[(PostgreSQL)] & E[(Redis)]
-            G(Batch container) <--> D & E
-            H(ATP Proxy container) <--> G
-        end
-```
-
-Note: Source code for ATP Proxy is placed in https://github.com/kuropen/pgn2025-atp-proxy.
-
 ## License for the code
 Please see the [LICENSE](LICENSE.md) file for the license of the code.
