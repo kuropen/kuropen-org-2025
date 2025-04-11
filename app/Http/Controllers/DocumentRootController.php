@@ -14,8 +14,7 @@ class DocumentRootController extends Controller
     public function index()
     {
         return response()
-            ->view('home')
-            ->header('Cache-Control', 'public, max-age=600, stale-while-revalidate=3600');
+            ->view('home');
     }
 
     public function privacy()

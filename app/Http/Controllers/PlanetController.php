@@ -30,7 +30,6 @@ class PlanetController extends Controller
 
         return response()
             ->view('planet', compact('documents', 'lastRunLog'))
-            ->header('Expires', $expires->toRfc7231String())
-            ->header('Cache-Control', 'public, max-age=' . $deltaInSec);
+            ->header('Expires', $expires->toRfc7231String());
     }
 }
