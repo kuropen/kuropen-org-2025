@@ -69,7 +69,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
             </li>
         </ul>
         <nav class="grid grid-cols-2 gap-2">
-            <a href="https://status.kuropen.org/" class="border rounded-lg p-2">
+            <a href="https://mi-status.kuropen.me/" class="border rounded-lg p-2">
                 障害・メンテナンス情報
             </a>
             <a href="{{route('contact')}}" class="border rounded-lg p-2">
