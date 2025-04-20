@@ -97,36 +97,42 @@ return [
             'description' => '問い合わせの種別を選択してください。',
             'valid' => false,
             'misskey_related' => false,
+            'invitation' => false,
         ],
         [
             'name' => 'MICROPEN/招待コード発行依頼',
             'description' => '面識のある当サーバーユーザーの名前と、そのユーザーとの関係性を必ず添えて送ってください。',
             'valid' => true,
             'misskey_related' => true,
+            'invitation' => true,
         ],
         [
             'name' => 'MICROPEN/不正利用の通報',
             'description' => '不正行為を行ったユーザーまたはそれにあたる投稿のURL、不正行為と考える理由を記載してください。',
             'valid' => true,
             'misskey_related' => true,
+            'invitation' => false,
         ],
         [
             'name' => 'eternie-labs.netドメインのメールについて',
             'description' => '迷惑メール等の状況を記載してください。',
             'valid' => true,
             'misskey_related' => false,
+            'invitation' => false,
         ],
         [
             'name' => 'Webサイトの内容について',
             'description' => '誤字脱字、不具合、要望等を記載してください。',
             'valid' => true,
             'misskey_related' => false,
+            'invitation' => false,
         ],
         [
             'name' => 'その他',
             'description' => 'その他のお問い合わせはこちらに記載してください。',
             'valid' => true,
             'misskey_related' => false,
+            'invitation' => false,
         ],
     ]
 ];

@@ -26,3 +26,5 @@ Route::get('/health', [\App\Http\Controllers\HealthCheckApiController::class, 'h
 
 Route::middleware(\App\Http\Middleware\EncryptCookies::class)
     ->put('cookie-policy/confirm', [\App\Http\Controllers\CookiePolicyController::class, 'confirm']);
+
+Route::get('/documents', [\App\Http\Controllers\DocumentListApiController::class, '__invoke']);

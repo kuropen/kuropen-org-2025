@@ -13,4 +13,5 @@ class DocumentData
     public string $publishedAt;
     public string $sourceName;
     public ?string $misskey_note_id;
+    public bool $is_repost = false;
 }

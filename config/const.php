@@ -45,7 +45,7 @@ return [
         ],
     ],
     'bluesky' => [
-        'proxy_url' => env('ATP_PROXY_URL', 'http://atp-proxy.railway.internal:3000'),
+        'proxy_url' => env('ATP_PROXY_URL', 'http://localhost:3000'),
     ],
     'staff_zone' => [
         'access_token_key' => 'staff_access_token',

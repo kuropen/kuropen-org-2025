@@ -24,11 +24,13 @@ class BlueskySource implements DocumentSource
             $postId = str($postItem['uri'])->afterLast('/')->toString();
             $authorDid = $postItem['author']['did'];
             $publishedAt = $postItem['record']['createdAt'];
+            $isRepost = false;
 
             if ($authorDid !== $currentAccountDid) {
                 // repost
                 $text = "RP @{$postItem['author']['handle']}: {$postItem['record']['text']}";
                 $publishedAt = $item['reason']['indexedAt'];
+                $isRepost = true;
             } elseif (isset($item['reply']['parent']['author'])) {
                 $text = "@{$item['reply']['parent']['author']['handle']} {$postItem['record']['text']}";
             } else {
@@ -40,6 +42,7 @@ class BlueskySource implements DocumentSource
             $document->url = "https://bsky.app/profile/{$authorDid}/post/{$postId}";
             $document->publishedAt = $publishedAt;
             $document->sourceName = $this->getSourceName();
+            $document->is_repost = $isRepost;
             return $document;
         }, $feed['data']['feed']);
     }

@@ -69,6 +69,7 @@ class MisskeySource implements DocumentSource
             $document = new DocumentData();
             $text = $note['text'];
             $url = "https://mi.kuropen.org/notes/{$note['id']}";
+            $isRepost = false;
 
             // 純粋Renoteの場合
             if (isset($note['renote']) && is_null($note['text'])) {
@@ -81,6 +82,7 @@ class MisskeySource implements DocumentSource
                 $originalUserHost = $renoted['user']['host'] ?? 'mi.kuropen.org';
                 $text = "RN @{$renoted['user']['username']}@{$originalUserHost}: {$renoteText}";
                 $url = $renoted['url'] ?? $renoted['uri'] ?? $url;
+                $isRepost = true;
             } else if ($note['cw']) {
                 // Content Warningがある場合はその内容を表示
                 $text = $note['cw'];
@@ -91,6 +93,7 @@ class MisskeySource implements DocumentSource
             $document->publishedAt = $note['createdAt'];
             $document->sourceName = $this->getSourceName();
             $document->misskey_note_id = $note['id'];
+            $document->is_repost = $isRepost;
             return $document;
         }, $notes);
     }

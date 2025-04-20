@@ -21,6 +21,7 @@ class Document extends Model
         'published_at',
         'data_source',
         'misskey_note_id',
+        'is_repost',
     ];
 
     /**
@@ -37,9 +38,33 @@ class Document extends Model
                     'title' => $document->title,
                     'published_at' => $document->publishedAt,
                     'data_source' => $document->sourceName,
+                    'is_repost' => $document->is_repost,
                 ]
             );
         }
+    }
+
+    /**
+     * 指定したデータソースのドキュメントを取得する.
+     * @param string|array|null $sources
+     * @param int $limit
+     * @return array
+     */
+    public static function getDocumentsOfSources(string|array|null $sources, int $limit = 100): array
+    {
+        $model = self::select();
+        if (!empty($sources)) {
+            if (is_string($sources)) {
+                $sources = [$sources];
+            }
+            $model = $model->whereIn('data_source', $sources);
+        }
+
+        return $model
+            ->orderBy('published_at', 'desc')
+            ->limit($limit)
+            ->get()
+            ->toArray();
     }
 
 }
