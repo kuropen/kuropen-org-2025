@@ -88,6 +88,10 @@ Route::prefix('/staff-zone')
                     ->middleware('signed');
                 Route::get('/planet', 'showPlanetDeleteForm')->name('staff.planet.show_delete');
                 Route::post('/planet/delete', 'executePlanetDelete')->name('staff.planet.delete');
+                Route::get('/set_block_description', 'showSetBlockDescriptionForm')
+                    ->name('staff.set_block_description');
+                Route::post('/set_block_description', 'executeSetBlockDescription')
+                    ->name('staff.set_block_description.execute');
             });
     });
 

@@ -36,6 +36,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                         <th>ブロック解除日</th>
                     @else
                         <th>ブロック実施日</th>
+                        <th>詳細</th>
                     @endif
                 </tr>
                 @foreach($blockedList as $blocked)
@@ -50,6 +51,9 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                                 {{\Illuminate\Support\Carbon::make($blocked->blocked_at)->timezone('Asia/Tokyo')->format('Y年m月d日')}}{{--
                                 --}}@if(\Illuminate\Support\Carbon::make($blocked->blocked_at)->format('YMD')
                                         == \Illuminate\Support\Carbon::make($oldestBlockDate)->format('YMD'))以前@endif
+                            </td>
+                            <td class="pl-2">
+                                {{$blocked->description}}
                             </td>
                         @endif
                     </tr>

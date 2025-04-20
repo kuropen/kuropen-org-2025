@@ -7,8 +7,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PlanetDeleteRequest;
+use App\Http\Requests\SetBlockDescriptionRequest;
 use App\Http\Requests\StaffAuthCallbackRequest;
 use App\Http\Requests\StaffAuthRequest;
+use App\Models\BlockedFediverseServer;
 use App\Models\Document;
 use App\Models\InquiryRecord;
 use App\Services\ExternalApi\Misskey\MiAuth;
@@ -158,5 +160,27 @@ class StaffZoneController
         $document = Document::where('url', $url)->first();
         $document->delete();
         return redirect()->route('staff.planet.show_delete')->with('delete_status', 'success');
+    }
+
+    public function showSetBlockDescriptionForm()
+    {
+        $this->adminOnly();
+        $servers = BlockedFediverseServer::listNotRepealed();
+        $status = session('set_block_description_status');
+        return view('staff.set_block_description', compact('servers', 'status'));
+    }
+
+    public function executeSetBlockDescription(SetBlockDescriptionRequest $request)
+    {
+        $this->adminOnly();
+        $serverId = $request->input('serverId');
+        $description = $request->input('description');
+
+        // サーバー情報を取得
+        $server = BlockedFediverseServer::findOrFail($serverId);
+        $server->description = $description;
+        $server->save();
+
+        return redirect()->route('staff.set_block_description')->with('set_block_description_status', 'success');
     }
 }

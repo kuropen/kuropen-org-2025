@@ -36,6 +36,16 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                 </a>
             </li>
             <li class="border-b mb-2">
+                <a href="{{ route('staff.set_block_description') }}" class="flex flex-row align-middle">
+                    <div class="flex-grow">
+                        MICROPEN ブロック先詳細入力
+                    </div>
+                    <div>
+                        <span class="iconify heroicons--chevron-right w-6 h-6"></span>
+                    </div>
+                </a>
+            </li>
+            <li class="border-b mb-2">
                 <a href="{{ route('staff.inquiry.list') }}" class="flex flex-row align-middle">
                     <div class="flex-grow text-red-800">
                         ログアウト
