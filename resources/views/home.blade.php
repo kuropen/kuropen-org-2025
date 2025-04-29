@@ -14,7 +14,7 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
                     <h1 class="text-2xl inter">{{config('app.name')}}</h1>
                 </div>
             </header>
-            <aside class="md:order-first md:row-span-2">
+            <aside class="md:row-span-2">
                 <picture>
                     <source
                         srcset="{{ Vite::asset('resources/images/hero_768_20250318.jpg') }}, {{ Vite::asset('resources/images/hero_20250318.jpg') }} 3x">
