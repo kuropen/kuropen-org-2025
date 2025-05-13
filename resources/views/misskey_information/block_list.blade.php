@@ -12,14 +12,14 @@ SPDX-License-Identifier: CC-BY-NC-SA-4.0
         <p class="mb-2">以下のサーバーは当サーバーからブロックされています。</p>
 
         <div class="m-4">
-            <ul class="flex flex-row gap-4 justify-center" role="tablist">
+            <ul class="grid grid-cols-2 gap-3" role="tablist">
                 <li role="tab">
-                    <a href="{{route('micropen.blocked', ['repealed' => false])}}" class="m-2 p-2 border-b-4 text-center @unless($showRepealed) border-green-400 @endunless">
+                    <a href="{{route('micropen.blocked', ['repealed' => false])}}" class="border-b-4 flex flex-row justify-center gap-2 pb-2 cursor-pointer @unless($showRepealed) border-blue-900 @endunless">
                         ブロック実施中
                     </a>
                 </li>
                 <li role="tab">
-                    <a href="{{route('micropen.blocked', ['repealed' => true])}}" class="m-2 p-2 border-b-4 text-center @if($showRepealed) border-green-400 @endif">
+                    <a href="{{route('micropen.blocked', ['repealed' => true])}}" class="border-b-4 flex flex-row justify-center gap-2 pb-2 cursor-pointer @if($showRepealed) border-blue-900 @endif">
                         解除済み
                     </a>
                 </li>
