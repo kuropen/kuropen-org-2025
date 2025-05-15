@@ -1,7 +1,7 @@
 ---
 title: Legal Notice
 category: legal
-lastUpdated: 2025/04/12
+lastUpdated: 2025/05/16
 ---
 
 # Kuropen運営サイトのプライバシーポリシー
@@ -14,6 +14,7 @@ lastUpdated: 2025/04/12
     - kuropen.org
     - eternie-labs.net
     - akabe.co
+    - kuropen.me
 
 ## 外部サービスでホスティングされているページ
 
@@ -21,12 +22,10 @@ lastUpdated: 2025/04/12
 
 なお、以下のページに関しては、この項以外の本プライバシーポリシーの内容は適用されません。
 
-- 2023年10月以前の雑記帳ページ
-[Notion (アメリカ合衆国 Notion Labs, Inc.)](https://www.notion.so/Privacy-Policy-3468d120cf614d4c9014c09f6adc9091?pvs=21)
 - 「しずかなインターネット」上に掲載されている雑記帳コンテンツ
 [しずかなインターネット (合同会社Codebrew)](https://sizu.me/terms?tab=privacy)
 - サービスステータスページ
-[BetterStack (アメリカ合衆国 Better Stack, Inc.)](https://betterstack.com/privacy)
+[Phare.io (スロベニア ČAROVNIŠKE TEHNOLOGIJE, Nicolas Paul Beauvais s.p.)](https://phare.io/legal/privacy-policy)
 
 ## 電気通信事業法に基づく表示
 
