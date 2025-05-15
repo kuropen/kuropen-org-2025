@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+# SPDX-FileCopyrightText: 2024 Kuropen <webmaster@kuropen.org>
 # SPDX-License-Identifier: CC0-1.0
 
 echo 'RemoteIPHeader CF-Connecting-IP'

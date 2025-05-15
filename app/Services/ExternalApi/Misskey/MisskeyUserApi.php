@@ -1,6 +1,6 @@
 <?php
 /*
- * SPDX-FileCopyrightText: 2024 Kuropen <hy-kuropen@eternie-labs.net>
+ * SPDX-FileCopyrightText: 2024 Kuropen <webmaster@kuropen.org>
  * SPDX-License-Identifier: BSL-1.0
  */
 
